@@ -21,4 +21,4 @@ role: <br/>
 Technology to be used: 
 
 ## Project Description
-
+The goal of this project is to provide a platform for career services where students seeking for employment may publish and update their portfolios and companies can post job openings. All Students and Employers must first create an account  portal before logging in using their email and password. Students will build or edit their profiles, see job opportunities, submit applications, and will be notified for an interview. Employers will manage their job postings and evaluate candidate applications and they will be notified when applicants submit applications for open positions. Our platform requires a PC or a mobile device with Internet to access the website online.
