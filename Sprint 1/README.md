@@ -8,7 +8,7 @@ role: login page <br/>
 Name: Suniel Ramos // ID:40113046 // Github username: Onestarsin <br/>
 role: Setup page <br/>
 
-Name: // ID: // Github username: <br/>
+Name: Fatoumata Binta Barry // ID:40213443 // Github username:Fatoumatabintabarry <br/>
 role: <br/>
 
 Name: // ID: // Github username: <br/>
