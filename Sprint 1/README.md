@@ -11,8 +11,8 @@ role: Setup page <br/>
 Name: Fatoumata Binta Barry // ID:40213443 // Github username:Fatoumatabintabarry <br/>
 role: <br/>
 
-Name: // ID: // Github username: <br/>
-role: <br/>
+Name: Sarah Abellard// ID:40184667 // Github username:sarahabellard <br/>
+role: candidates page <br/>
 
 Name: // ID: // Github username: <br/>
 role: <br/>
