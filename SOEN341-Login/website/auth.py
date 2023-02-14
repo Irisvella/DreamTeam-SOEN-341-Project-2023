@@ -38,6 +38,8 @@ def sign_up():
     if request.method == 'POST': 
         email = request.form.get('email')
         first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        phone_number = request.form.get('phone_number')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
@@ -55,7 +57,7 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be greater than 6 characters.', category='error')
         else:
-            user = User_seeker(email=email, first_name=first_name, password=generate_password_hash(password1, method='sha256'))
+            user = User_seeker(email=email, first_name=first_name, last_name=last_name, phone_number = phone_number, password=generate_password_hash(password1, method='sha256'))
             db.session.add(user)
             db.session.commit()
             login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 
