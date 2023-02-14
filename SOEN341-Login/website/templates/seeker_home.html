@@ -5,5 +5,9 @@
 
 {% block content %}
 
-<h1>{% print("Welcome, " + user.first_name + "!" )%}</h1>
+<h1>{% print("Welcome, " + user.first_name + " " + user.last_name + "!" )%}</h1>
+</br>
+<h2>Your Information</h2>
+{% print("Phone number: " + user.phone_number) %} </br>
+{% print("Email address: " + user.email) %}
 {% endblock %}
