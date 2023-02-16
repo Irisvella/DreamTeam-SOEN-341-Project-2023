@@ -11,3 +11,8 @@ def home():
 @login_required
 def seeker_home():
     return render_template("seeker_home.html", user=current_user)
+
+@views.route('/employer_home')
+@login_required
+def employer_home():
+    return render_template("employer_home.html", user=current_user)

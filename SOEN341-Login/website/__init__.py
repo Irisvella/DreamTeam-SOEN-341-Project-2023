@@ -21,7 +21,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     #import models file to define the classes before creating the db
-    from .models import User_seeker, Note, Employer
+    from .models import User, Note, Employer
     
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login' #redirects to this page if a user tries to access a page that requires login.
@@ -29,7 +29,7 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(id):
-        return User_seeker.query.get(int(id))
+        return User.query.get(int(id))
         
     with app.app_context():
         db.create_all()
