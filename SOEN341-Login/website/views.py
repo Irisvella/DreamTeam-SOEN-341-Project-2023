@@ -31,7 +31,7 @@ def employer_home():
 def about():
     return render_template('about.html', user=current_user)
 
-@views.route("/create-post", methods=['GET','POST'])
+@views.route("/create_post", methods=['GET','POST'])
 @login_required
 def create_post():
     if request.method == "POST":
