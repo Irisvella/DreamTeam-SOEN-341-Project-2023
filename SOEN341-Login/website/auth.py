@@ -36,7 +36,7 @@ def logout():
     user.authenticated = False
     logout_user()
     #return render_template("auth.login")
-    return render_template("login.html")
+    return render_template("login.html", user = current_user)
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():

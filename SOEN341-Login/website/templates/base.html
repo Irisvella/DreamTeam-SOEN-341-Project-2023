@@ -26,7 +26,6 @@
               <li class="nav-item active  mr-4">
                 <a class="nav-link" id="home" href="/">Home <span class="sr-only">(current)</span></a>
               </li>
-              
               <li class="nav-item  mr-4">
                 <a class="nav-link" id="findajob" href="/seeker_home" >Find a job</a>
               </li>
@@ -41,16 +40,13 @@
                   <a class="dropdown-item" id="about" href="/about" >About us </a>
                   <a class="dropdown-item" href="#">second option</a>
               </li>
-
-              
               {% if user.is_authenticated %}
               <li class="nav-item  mr-4">
-                <a class="nav-link" id="logout" href="/">Log Out</a>
+                <a class="nav-link" id="logout" href="/logout">Log Out</a>
               </li>
               {% else %}
               <li class="nav-item  mr-4 ">
                 <a type="button" id="login" href="/login" class="btn btn-outline-secondary" > Log In </a>
-           
               </li>
               <li class="nav-item  mr-4 ">
                 <a type="button"id="sign-up" href="/sign-up" class="btn btn-dark" >Sign up </a>
