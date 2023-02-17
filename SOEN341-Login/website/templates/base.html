@@ -22,36 +22,43 @@
         
           <div class="collapse navbar-collapse navigation" id="navbarTogglerDemo03">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            
               <li class="nav-item active  mr-4">
                 <a class="nav-link" id="home" href="/">Home <span class="sr-only">(current)</span></a>
               </li>
               
+              <li class="nav-item  mr-4">
+                <a class="nav-link" id="findajob" href="/seeker_home" >Find a job</a>
+              </li>
+              <li class="nav-item  mr-4">
+                <a class="nav-link" id="hiretalent" href="/employer_home">Hire Talent</a>
+              </li>
+              
+
               <li class="nav-item dropdown  mr-4">
-                <a class="nav-link dropdown-toggle" href="#" id="findajob" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Find a job
+                <a class="nav-link dropdown-toggle"   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Discover
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">This is a test </a>
+                  <a class="dropdown-item" id="about" href="/about" >About us </a>
                   <a class="dropdown-item" href="#">second option</a>
               </li>
 
-              <li class="nav-item  mr-4">
-                <a class="nav-link" id="hiretalent" >Hire Talent</a>
-              </li>
-              <li class="nav-item  mr-4">
-                <a class="nav-link"   href="/about">About us</a>
-              </li>
+             
               
+              {% if user.is_authenticated %}
+              <li class="nav-item  mr-4">
+                <a class="nav-link" id="logout" href="/">Log Out</a>
+              </li>
+              {% else %}
               <li class="nav-item  mr-4 ">
                 <a type="button" id="login" href="/login" class="btn btn-outline-secondary" > Log In </a>
+           
               </li>
               <li class="nav-item  mr-4 ">
                 <a type="button"id="sign-up" href="/sign-up" class="btn btn-dark" >Sign up </a>
               </li>
-              
-              <li class="nav-item  mr-4">
-                <a class="nav-link" id="logout" href="/login">Log Out</a>
-              </li>
+              {% endif %}
             </ul>
           
 
