@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
+from flask import Flask, render_template
 
 views = Blueprint('views', __name__)
 
@@ -16,3 +17,7 @@ def seeker_home():
 @login_required
 def employer_home():
     return render_template("employer_home.html", user=current_user)
+
+@views.route('/about')
+def about():
+    return render_template('about.html')
