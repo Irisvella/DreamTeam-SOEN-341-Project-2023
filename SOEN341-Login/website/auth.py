@@ -1,33 +1,31 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User, Employer
-from werkzeug.security import generate_password_hash, check_password_hash    #securing passwords 
+from flask import Blueprint, render_template, redirect, url_for, request, flash
 from . import db
-from flask_login import login_required, login_user, logout_user, current_user
+from .models import User
+from flask_login import login_user, logout_user, login_required, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+
+auth = Blueprint("auth", __name__)
 
 
-auth = Blueprint('auth', __name__)
-
-@auth.route('/login', methods=['GET', 'POST'])
+@auth.route("/login", methods=['GET', 'POST'])
 def login():
-    if request.method =='POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
+    if request.method == 'POST':
+        email = request.form.get("email")
+        password = request.form.get("password")
 
-        #search db by a specific field. Login process to check what user entered with whats in the db
         user = User.query.filter_by(email=email).first()
         if user:
-            if check_password_hash(user.password,password):
-                flash('Logged in successfully.', category='success')
-                login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 
-                if request.form.get('profile') == "seeker":
-                    return redirect(url_for('views.seeker_home')) #redirect to the page 
-                if request.form.get('profile') == "employer":
-                    return redirect(url_for('views.employer_home'))
-            else: 
-                flash('Incorrect password.', category='error')
+            if check_password_hash(user.password, password):
+                flash("Logged in!", category='success')
+                login_user(user, remember=True)
+                return redirect(url_for('views.home'))
+            else:
+                flash('Password is incorrect.', category='error')
         else:
-            flash('Email does not exist', category='error')
+            flash('Email does not exist.', category='error')
+
     return render_template("login.html", user=current_user)
+
 
 @auth.route('/logout')
 @login_required #can only access the logout function if a user is logged in. 
@@ -38,63 +36,44 @@ def logout():
     #return render_template("auth.login")
     return render_template("login.html", user = current_user)
 
-@auth.route('/sign-up', methods=['GET', 'POST'])
+
+@auth.route("/sign-up", methods=['GET', 'POST'])
 def sign_up():
-    if request.method == 'POST': 
-        email = request.form.get('email')
-        first_name = request.form.get('first_name')
-        last_name = request.form.get('last_name')
-        phone_number = request.form.get('phone_number')
-        password1 = request.form.get('password1')
-        password2 = request.form.get('password2')
+    if request.method == 'POST':
+        email = request.form.get("email")
+        username = request.form.get("username")
+        password1 = request.form.get("password1")
+        password2 = request.form.get("password2")
 
-        #checks if the email is already in use 
-        user = User.query.filter_by(email=email).first()
-        if user:
-            flash('Email already exists', category='error')
+        email_exists = User.query.filter_by(email=email).first()
+        username_exists = User.query.filter_by(username=username).first()
 
-        if len(email) < 2:
-            flash('Email must be greater than 4 characters.', category='error') #flashes error message
-        elif len(first_name) < 2:
-            flash('First name must be greater than 4 characters.', category='error')
+        if email_exists:
+            flash('Email is already in use.', category='error')
+        elif username_exists:
+            flash('Username is already in use.', category='error')
         elif password1 != password2:
-            flash('Passwords must match.', category='error')
-        elif len(password1) < 1:
-            flash('Password must be greater than 6 characters.', category='error')
+            flash('Password don\'t match!', category='error')
+        elif len(username) < 2:
+            flash('Username is too short.', category='error')
+        elif len(password1) < 6:
+            flash('Password is too short.', category='error')
+        elif len(email) < 4:
+            flash("Email is invalid.", category='error')
         else:
-            user = User(profile="seeker",email=email, first_name=first_name, last_name=last_name, phone_number = phone_number, password=generate_password_hash(password1, method='sha256'))
-            db.session.add(user)
+            new_user = User(email=email, username=username, password=generate_password_hash(
+                password1, method='sha256'))
+            db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 
-            flash('Account created successfully.', category='success')
-            return redirect(url_for('views.seeker_home'))
+            login_user(new_user, remember=True)
+            flash('User created!')
+            return redirect(url_for('views.home'))
+
     return render_template("signup.html", user=current_user)
 
-@auth.route('/signup_employer', methods=['GET', 'POST'])
-def signup_employer():
-    if request.method == 'POST': 
-        email = request.form.get('email')
-        company_name = request.form.get('company_name')
-        phone_number = request.form.get('phone_number')
-        password1 = request.form.get('password1')
-        password2 = request.form.get('password2')
 
-        #checks if the email is already in use 
-        user = User.query.filter_by(email=email).first()
-        if user:
-            flash('Email already exists', category='error')
-
-        if len(email) < 2:
-            flash('Email must be greater than 4 characters.', category='error') #flashes error message
-        elif password1 != password2:
-            flash('Passwords must match.', category='error')
-        elif len(password1) < 1:
-            flash('Password must be greater than 6 characters.', category='error')
-        else:
-            user = User(profile="employer",email=email, company_name=company_name, phone_number = phone_number, password=generate_password_hash(password1, method='sha256'))
-            db.session.add(user)
-            db.session.commit()
-            login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 
-            flash('Account created successfully.', category='success')
-            return redirect(url_for('views.employer_home'))
-    return render_template("signup_employer.html", user=current_user)
+@auth.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("views.home"))
