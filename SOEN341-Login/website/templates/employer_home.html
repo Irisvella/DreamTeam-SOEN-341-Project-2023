@@ -1,15 +1,20 @@
 <!-- Home page for when the employer logs in -->
 
+
 {% extends "base.html" %}
 {% block title %}Employer Home{% endblock %}  <!-- override the template to name the page-->
 
 {% block content %}
 
-<h1>{% print("Welcome, " + user.company_name + "!" )%}</h1>
+{% if user.company_name %}
+  <h1>Welcome, {{ user.company_name }}!</h1>
 </br>
 <h2>Your Information</h2>
 {% print("Phone number: " + user.phone_number) %} </br>
 {% print("Email address: " + user.email) %}
+{% else %}
+  <h1>Welcome!</h1>
+{% endif %}
 {% endblock %}
 
 
