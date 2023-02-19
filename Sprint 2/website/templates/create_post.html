@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Job Posting Page{% endblock %}  <!-- override the template to name the page-->
+
+{% block content %}
+<h1 align="center"> Make a post </h1>
+
+
+<form method="POST">
+    <textarea name="title" id="title" class="form-control">Enter job title</textarea>
+    <textarea name="text" id="text" class="form-control"cols="30" rows="10">Enter job description</textarea>
+    <br>
+    <div align="center">
+        <button type="submit" class="btn btn-lg btn-primary">Post</button>
+    </div>
+</form>
+{% endblock %}
