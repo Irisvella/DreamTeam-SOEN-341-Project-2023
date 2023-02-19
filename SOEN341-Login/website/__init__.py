@@ -6,7 +6,7 @@ from flask_login import LoginManager
 
 
 db = SQLAlchemy() #sets up the db. database variable is db
-DB_NAME = "database.db" #the name of the database
+DB_NAME = "database.sqlite" #the name of the database
 
 def create_app():
     app = Flask(__name__)
@@ -22,7 +22,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     #import models file to define the classes before creating the db
-    from .models import User, Note, Employer, Post
+    from .models import User, Note, Employer, Post, Admin
     
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login' #redirects to this page if a user tries to access a page that requires login.
@@ -30,8 +30,20 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(id):
-        return User.query.get(int(id))
-        
+        # Check if user exists in Employer table
+        user = Employer.query.get(int(id))
+        if user:
+            return user
+        # If user not found in Employer table, check if user exists in Admin table
+        user = Admin.query.get(int(id))
+        if user:
+            return user
+        user = User.query.get(int(id))
+        if user:
+            return user
+        # If user not found in either table, return None
+        return None
+            
     with app.app_context():
         db.create_all()
     # create_database(app)
