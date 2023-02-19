@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(50))
     company_name = db.Column(db.String(50))
     phone_number = db.Column(db.String(15))
-    profile = db.Column(db.String(20)) #determines if the user is a job seeker, employer, or admin 
+    profile = db.Column(db.String(20)) #values are "seeker", "employer", "admin"
     Posts = db.relationship('Post', backref='user', passive_deletes=True)
 
 

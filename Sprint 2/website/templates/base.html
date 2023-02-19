@@ -29,9 +29,7 @@
               <li class="nav-item  mr-4">
                 <a class="nav-link" id="findajob" href="/jobposting" >Find a job</a>
               </li>
-              <li class="nav-item  mr-4">
-                <a class="nav-link" id="hiretalent" href="/employer_home">Hire Talent</a>
-              </li>
+
               <li class="nav-item dropdown  mr-4">
                 <a class="nav-link dropdown-toggle"   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Discover
@@ -39,7 +37,26 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" id="about" href="/about" >About us </a>
                   <a class="dropdown-item" href="#">second option</a>
+              </li> 
+
+              {%if user.is_authenticated %} {%if user.profile == 'employer'%}
+              <li class="nav-item  mr-4">
+                <a class="nav-link" id="employer_home" href="/employer_home">Profile</a>
               </li>
+              {%endif%}{%endif%}
+
+              {%if user.is_authenticated %} {%if user.profile == 'seeker'%}
+              <li class="nav-item  mr-4">
+                <a class="nav-link" id="seeker_home" href="/seeker_home">Profile</a>
+              </li>
+              {%endif%}{%endif%}
+
+
+              {%if user.is_authenticated %} {%if user.profile == 'employer'%}
+              <li class="nav-item  mr-4">
+                <a class="nav-link" id="hiretalent" href="/create_post">Hire Talent</a>
+              </li>
+              {%endif%}{%endif%}
               {% if user.is_authenticated %}
               <li class="nav-item  mr-4">
                 <a class="nav-link" id="logout" href="/logout">Log Out</a>
