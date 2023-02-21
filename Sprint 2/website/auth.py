@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User, Employer
+from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash    #securing passwords 
 from . import db
 from flask_login import login_required, login_user, logout_user, current_user
@@ -36,7 +36,7 @@ def logout():
     user.authenticated = False
     logout_user()
     #return render_template("auth.login")
-    return render_template("login.html")
+    return render_template("login.html", user = current_user)
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():

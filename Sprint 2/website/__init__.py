@@ -22,7 +22,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     #import models file to define the classes before creating the db
-    from .models import User, Note, Employer, Post
+    from .models import User, Post
     
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login' #redirects to this page if a user tries to access a page that requires login.
