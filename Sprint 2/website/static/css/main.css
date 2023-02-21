@@ -1,0 +1,32 @@
+*{
+  margin: 0;
+  text-decoration: none;
+  padding: 0;
+  list-style: none;
+}
+
+h3{
+	color: #bc6c25;
+}
+
+.group {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.item {
+  width: 15vw;
+  height: 75vh;
+  background-position: center;
+  background-size: 75vh;
+  margin: 1vw;
+  border-radius: 3vw;
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+:root {
+	font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
+}

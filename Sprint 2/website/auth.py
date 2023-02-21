@@ -38,6 +38,10 @@ def logout():
     #return render_template("auth.login")
     return render_template("login.html", user = current_user)
 
+@auth.route('user-type', methods=['GET', 'POST'])
+def user_type():
+    return render_template('selection_type.html', user = current_user)
+
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST': 
