@@ -5,9 +5,29 @@
   list-style: none;
 }
 
-h3{
+/*h3{
 	color: #bc6c25;
 }
+*/
+
+/* Style the dropdown */
+input[list]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* Style the suggestions */
+datalist {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  width: 100%;
+}
+
+input:focus + datalist {
+  display: block;
+}
+
 
 .group {
   text-align: center;

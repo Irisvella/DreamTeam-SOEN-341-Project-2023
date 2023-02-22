@@ -1,31 +1,49 @@
 {% extends "base.html" %}
- {% block title %}Job Posting{% endblock %} {% block content%}
-    <h1 align="center">{% block header %}Current Job Offerings{% endblock %}</h1>
-    <div id="posts">
+
+{% block title %}Job Posting{% endblock %}
+
+{% block content %}
+  <br>
+  <form method="POST">
+    <label for="what">What:</label>
+    <input type="text" name="what" id="what" autocomplete="off">
+    <datalist id="what-list">
       {% for post in posts %}
-      <div class="card border-dark">
-        <div class="card-header d-flex justify-content-between align-items-center">        
-          <div class = "card-title">{{post.title}}</br>{%print("Author: " + post.user.company_name)%} </div>
-          <a href="/posts/{{post.user.username}}">{{post.user.username}}</a>
-          {% if user.id == post.author %}
-          <div class="btn-group">
-            <button
-              type="button"
-              class="button"
-
-            ></button>
-
-                <a href="/delete-post/{{post.id}}" class="button">Delete</a>
-
-          </div>
-          {% endif %}
+      <option value="{{ post.title }}">
+      {% endfor %}
+    </datalist>
+    <label for="where">Where:</label>
+    <input type="text" name="where" id="where" autocomplete="off">
+    <datalist id="where-list">
+      {% for post in posts %}
+      <option value="{{ post.address }}">
+      {% endfor %}
+    </datalist>
+    <button type="submit" formaction="{{ url_for('views.search') }}">Search</button>
+  </form>
+  <div id="posts">
+    {% if posts %}
+    {% for post in posts %}
+    <div class="card border-dark">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-title">{{ post.title }}<br>{% print("Author: " + post.user.company_name) %}</div>
+        <a href="/posts/{{ post.user.username }}">{{ post.user.username }}</a>
+        {% if current_user.id == post.author %}
+        <div class="btn-group">
+          <button type="button" class="button"></button>
+          <a href="/delete-post/{{ post.id }}" class="button">Delete</a>
         </div>
-        <div class="card-body">
-          <div class="card-text">{{post.text}}</div>
-        </div>
-        <div class="card-footer text-muted">{{post.date_created}}</div>
+        {% endif %}
       </div>
-      <br > {% endfor %}
+      <div class="card-body">
+        <div class="card-text">{{ post.text }}</div>
+      </div>
+      <div class="card-footer text-muted">{{ post.date_created }}</div>
     </div>
-    {% block footer %}
-    {% endblock %} {% endblock %}
+    <br>
+    {% endfor %}
+    {% else %}
+    <p>No job postings found.</p>
+    {% endif %}
+  </div>
+{% endblock %}

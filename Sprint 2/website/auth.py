@@ -17,12 +17,21 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password,password):
-                flash('Logged in successfully.', category='success')
-                login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 
-                if request.form.get('profile') == "seeker":
-                    return redirect(url_for('views.seeker_home')) #redirect to the page 
-                if request.form.get('profile') == "employer":
-                    return redirect(url_for('views.employer_home'))
+                profile = user.profile
+                if profile == "seeker":
+                    if request.form.get('profile') == "seeker":
+                        flash('Logged in successfully.', category='success')
+                        login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 
+                        return redirect(url_for('views.seeker_home')) #redirect to the page 
+                    else:
+                        flash('Did not log in successfully because the user is of wrong type. Probably employer', category='error')
+                if profile == "employer":
+                    if request.form.get('profile') == "employer":
+                        flash('Logged in successfully.', category='success')
+                        login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 
+                        return redirect(url_for('views.employer_home'))
+                    else:
+                        flash('Did not log in successfully because the user is of wrong type. Probably seeker', category='error')
             else: 
                 flash('Incorrect password.', category='error')
         else:
@@ -35,8 +44,7 @@ def logout():
     user = current_user
     user.authenticated = False
     logout_user()
-    #return render_template("auth.login")
-    return render_template("login.html", user = current_user)
+    return redirect(url_for('views.seeker_home'))
 
 @auth.route('user-type', methods=['GET', 'POST'])
 def user_type():

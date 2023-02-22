@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request,flash, redirect, url_for
 from flask_login import login_required, current_user
 from flask import Flask, render_template
-from .models import Post
+from .models import Post, User
 from. import db
 
 
@@ -17,11 +17,15 @@ def home():
 @views.route('/seeker_home')
 @login_required
 def seeker_home():
+    user_id = request.args.get('user_id')
+    user = User.query.filter_by(id=user_id).first()
     return render_template("seeker_home.html", user=current_user)
 
 @views.route('/employer_home')
 @login_required
 def employer_home():
+    user_id = request.args.get('user_id')
+    user = User.query.filter_by(id=user_id).first()
     return render_template("employer_home.html", user=current_user)
 
 @views.route('/about')
@@ -34,11 +38,16 @@ def create_post():
     if request.method == "POST":
         text= request.form.get('text')
         title=request.form.get('title')
-
+        address = "Chicago IL"
+        field = "AeroSpace"
+        salary = 25000
+        
+        company = current_user.company_name
+        
         if not text:
             flash('Post cannot be empty', category ='error')
         else:
-            post = Post(text=text, title=title, author=current_user.id)
+            post = Post(text=text, title=title, company=company, address=address, salary=salary, field=field, author=current_user.id)
             db.session.add(post)
             db.session.commit()
             flash('Post created',category ='success')
@@ -46,7 +55,7 @@ def create_post():
 
     return render_template('create_post.html',user=current_user)
 
-@views.route("/jobposting")
+@views.route("/jobposting", methods=['GET', 'POST'])
 def jobposting():
     posts = Post.query.all()
     print(posts)
@@ -78,4 +87,24 @@ def posts(username):
         return redirect(url_for('views.home'))
 
     post = Post.query.filter_by(author=user.id).all()
-    return render_template("posts.html", user=current_user, posts= posts,username=username )
+    return render_template("posts.html", user=current_user, posts= post,username=username )
+
+@views.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        what = request.form['what']
+        where = request.form['where']
+
+        if what or where:
+            # Query the posts that match the what and where conditions
+            posts = Post.query.filter(Post.title.like(f'%{what}%'), Post.address.like(f'%{where}%')).all()
+
+            if not posts:
+                flash('No job postings found.', category='error')
+
+            return render_template('jobposting.html', posts=posts)
+
+        else:
+            flash('Please enter search criteria.', category='error')
+
+    return redirect(url_for('views.jobposting'))

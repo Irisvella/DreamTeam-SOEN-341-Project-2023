@@ -14,8 +14,8 @@ role: <br/>
 Name: Sarah Abellard// ID:40184667 // Github username:sarahabellard <br/>
 role: candidates page <br/>
 
-Name:  // ID: // Github username: <br/>
-role: <br/>
+Name: Souleymane Camara // ID: 40183807 // Github username: Mistersuun <br/>
+role: Backend <br/>
 
 <br/>
 
