@@ -1,18 +1,18 @@
 ## Team Members
 Name: Andy Sun // ID:40192040 // Github username: Irisvella <br/>
-role: Employer page<br/>
+role: Backend <br/>
 
 Name: Marina Girgis // ID:40168639 // Github username: marinaGirgis <br/>
-role: login page <br/>
+role: Frontend <br/>
 
 Name: Suniel Ramos // ID:40113046 // Github username: Onestarsin <br/>
-role: Setup page <br/>
+role: Frontend <br/>
 
 Name: Fatoumata Binta Barry // ID:40213443 // Github username:Fatoumatabintabarry <br/>
-role: <br/>
+role: Frontend <br/>
 
 Name: Sarah Abellard// ID:40184667 // Github username:sarahabellard <br/>
-role: candidates page <br/>
+role: Frontend <br/>
 
 Name: Souleymane Camara // ID: 40183807 // Github username: Mistersuun <br/>
 role: Backend <br/>
@@ -26,5 +26,3 @@ The goal of this project is to provide a platform for career services where stu
 
 We will be using python, flask, javascript, html , css , bootstrap , jquery and more TBD
 
-## Meeting minutes
-https://docs.google.com/document/d/1NlU-rLfndpOnUsooP2daTKHw5xIMIn6kqrGMtm11Qy8/edit?usp=sharing
