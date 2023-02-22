@@ -2,10 +2,10 @@
 {% block title %}Employer Sign Up{% endblock %}  <!-- override the template to name the page-->
 
 {% block content %}
-<h1>Employer Sign Up Page</h1>
+<h1>Admin Sign Up Page</h1>
 <a id="sign-up" href="/sign-up">I am a job seeker.</a>
 <br>
-<a id="sign-up" href="/signup_admin">I am an admin.</a>
+<a id="signup_employer" href="/sign-up">I am an employer.</a>
 <form method="POST">
     <h3 align="center">Sign Up</h3>
     <div class="form-group">
@@ -36,24 +36,6 @@
         placeholder="Enter your last name">
     </div>
     <div class="form-group">
-        <label for="company_name">Company Name</label>
-        <input 
-        type="text" 
-        class="form-control" 
-        id="company_name" 
-        name="company_name" 
-        placeholder="Enter your Company name"/>
-    </div>
-    <div class = "form-group">
-        <label for="phone_number">Phone Number</label>
-        <input
-        type="text"
-        class="form-control"
-        id="phone_number"
-        name="phone_number"
-        placeholder="Enter your phone number">
-    </div>
-    <div class="form-group">
         <label for="password1">Password</label>
         <input 
         type="password" 
@@ -70,6 +52,15 @@
         id="password2" 
         name="password2" 
         placeholder="Please confirm your password"/>
+    </div>
+    <div class="form-group">
+        <label for="secret">Admin secret</label>
+        <input 
+        type="password" 
+        class="form-control" 
+        id="secret" 
+        name="secret" 
+        placeholder="Please confirm the secret key"/>
     </div>
     <br/>
     <button type="submit">Submit</button>

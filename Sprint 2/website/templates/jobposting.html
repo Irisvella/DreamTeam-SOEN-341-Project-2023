@@ -6,19 +6,19 @@
   <br>
   <form method="POST">
     <label for="what">What:</label>
-    <input type="text" name="what" id="what" autocomplete="off">
-    <datalist id="what-list">
-      {% for post in posts %}
-      <option value="{{ post.title }}">
-      {% endfor %}
-    </datalist>
-    <label for="where">Where:</label>
-    <input type="text" name="where" id="where" autocomplete="off">
-    <datalist id="where-list">
-      {% for post in posts %}
-      <option value="{{ post.address }}">
-      {% endfor %}
-    </datalist>
+      <input type="text" name="what" id="what" autocomplete="off" list="what-list">
+      <datalist id="what-list">
+        {% for post in posts %}
+        <option value="{{ post.title }}">
+        {% endfor %}
+      </datalist>
+      <label for="where">Where:</label>
+      <input type="text" name="where" id="where" autocomplete="off" list="where-list">
+      <datalist id="where-list">
+        {% for post in posts %}
+        <option value="{{ post.address }}">
+        {% endfor %}
+      </datalist>
     <button type="submit" formaction="{{ url_for('views.search') }}">Search</button>
   </form>
   <div id="posts">
@@ -26,7 +26,7 @@
     {% for post in posts %}
     <div class="card border-dark">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <div class="card-title">{{ post.title }}<br>{% print("Author: " + post.user.company_name) %}</div>
+        <div class="card-title">{{ post.title }}<br>{% print("Company: " + post.user.company_name) %}</div>
         <a href="/posts/{{ post.user.username }}">{{ post.user.username }}</a>
         {% if current_user.id == post.author %}
         <div class="btn-group">

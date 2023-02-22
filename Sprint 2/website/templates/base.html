@@ -9,7 +9,9 @@
         <!--This is the link for all icons in the website -->
         <link rel="stylesheet" href="https://kit.fontawesome.com/3c22080b59.css" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-   
+        <link href='https://css.gg/profile.css' rel='stylesheet'>
+        <link href='https://css.gg/bell.css' rel='stylesheet'>
+
     <title>{% block title %}Title Page{% endblock %}</title>
     </head>
     <body>
@@ -35,24 +37,43 @@
               {% endif %}
 
               <li class="nav-item dropdown  mr-4">
-                <a class="nav-link dropdown-toggle"   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" style="cursor: pointer;"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Discover
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" id="about" href="/about" >About us </a>
-                  <a class="dropdown-item" href="#">second option</a>
+                  <a class="dropdown-item" href="#">Help</a>
               </li> 
 
+              <!-- THIS SHOULD BRING US TO THE HOME PAGE FOR THE EMPLOYERS
+                
               {%if user and user.is_authenticated and user.profile == 'employer'%}
               <li class="nav-item  mr-4">
                 <a class="nav-link" id="employer_home" href="/employer_home">Profile</a>
               </li>
               {%endif%}
+              -->
 
-              {%if user and user.is_authenticated and user.profile == 'seeker'%}
-              <li class="nav-item  mr-4">
-                <a class="nav-link" id="seeker_home" href="/seeker_home">Profile</a>
-              </li>
+              {%if user and user.is_authenticated and (user.profile == 'seeker' or user.profile == 'employer') %}
+              <li class="nav-item dropdown  mr-4">
+                <a class="nav-item mr-4" id="notifications" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="gg-bell"></i> 
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/resume">List of notifications</a>
+                </div>
+              </li> 
+
+              <li class="nav-item dropdown  mr-4">
+                <a class="nav-item mr-4"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="gg-profile"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" id="about" href="/seeker_home" >Overview</a>
+                  <a class="dropdown-item" href="/resume">Resume</a>
+                  <a class="dropdown-item" href="settings">Settings</a>
+                </div>
+              </li> 
               {%endif%}
 
 
