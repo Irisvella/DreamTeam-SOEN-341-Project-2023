@@ -1,0 +1,30 @@
+<!-- THIS PAGE IS TO SEND A CONTACT FORM TO THE ADMINS -->
+
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}  <!-- override the template to name the page-->
+
+{% block content %}
+    
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+        <title>Contact</title>
+      </head>
+    
+    <body>
+        <div class="container">
+            <form action="{{ url_for('auth.contact') }}" method=post>
+                <h1>Need help? Contact us here. </h1>
+                {{ form.hidden_tag() }}
+                {{ form.name(class_="input", placeholder="Name") }}
+                {{ form.email(class_="input", placeholder="Email")}}
+                {{ form.subject(class_="input", placeholder="Subject") }}
+                {{ form.message(class_="textarea", placeholder="Write a detailed message here") }}
+                {{ form.submit(class_="submit") }}
+            </form>
+        </div>
+    <body>
+  
+    
+
+
+{% endblock %}

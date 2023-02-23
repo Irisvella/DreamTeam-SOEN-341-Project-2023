@@ -3,6 +3,8 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash    #securing passwords 
 from . import db
 from flask_login import login_required, login_user, logout_user, current_user
+from .contactform import ContactForm
+
 
 
 auth = Blueprint('auth', __name__)
@@ -149,3 +151,10 @@ def signup_admin():
         else:
             flash('The secret key is incorrect', category='error')
     return render_template("signup_admin.html", user=current_user)
+
+@auth.route('/contact.html', methods = ['GET','POST'])
+def contact():
+    form = ContactForm()
+    if request.method == 'POST':
+        return 'form posted'
+    return render_template('/contact.html', form = form)
