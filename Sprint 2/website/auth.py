@@ -154,7 +154,11 @@ def signup_admin():
 
 @auth.route('/contact.html', methods = ['GET','POST'])
 def contact():
-    form = ContactForm()
-    if request.method == 'POST':
-        return 'form posted'
-    return render_template('/contact.html', form = form)
+  form = ContactForm()
+  if request.method == 'POST':
+    if form.validate() == False:
+      return render_template('/contact.html', form=form)
+    else:
+      return 'Form posted.'
+  elif request.method == 'GET':
+    return render_template('/contact.html', form=form)
