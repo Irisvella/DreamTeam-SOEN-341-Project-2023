@@ -9,9 +9,9 @@
   .container form{
     margin: auto;
     margin-top: 5%;
-    width: 50%;
+    width: 60%;
     height:90%;
-    min-width: 670px;
+    min-width: 300px;
     min-height: 500px;
     display: flex;
     justify-content: center;
@@ -72,8 +72,7 @@
     font-size: 15px;
     padding: 10px;
     outline: none;
-    min-width: 600px;
-    max-width: 600px;
+    width: 90%;
     min-height: 80px;
     max-height: 80px;
 }
