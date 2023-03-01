@@ -53,22 +53,47 @@ input:focus + datalist {
 
 
 .group {
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }
 
 .item {
   width: 15vw;
   height: 75vh;
   background-position: center;
-  background-size: 75vh;
-  margin: 1vw;
-  border-radius: 3vw;
-  display: inline-block;
+  background-size: cover;
+  border-radius: 1rem;
   cursor: pointer;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
 
+.item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+
+.item a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #fff;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.item h3 {
+  margin: 0;
+}
+
+.item:nth-child(1) {
+  background-image: url(https://images.unsplash.com/photo-1544654262-e295983be0f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cG9ydHJhaXR8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60);
+}
 
 :root {
 	font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
