@@ -5,6 +5,7 @@ from flask import Flask, render_template
 from werkzeug.utils import secure_filename
 from ..models import Post, User
 from .. import db
+from ..forms import ContactForm
 import io
 
 
@@ -187,3 +188,14 @@ def help():
 @login_required
 def admin_home():
     return render_template('home/admin_home.html', user=current_user)
+
+@main.route('/contact-us', methods = ['GET','POST'])
+def contact():
+  form = ContactForm()
+  if request.method == 'POST':
+    if form.validate() == False:
+      return render_template('/contact.html', form=form)
+    else:
+      return 'Form posted.'
+  elif request.method == 'GET':
+    return render_template('/contact.html', form=form)

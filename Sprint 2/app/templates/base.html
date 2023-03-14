@@ -42,7 +42,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" id="about" href="/about" >About us </a>
-                  <a class="dropdown-item" id="contact" href="/contact.html">Contact Us</a>
+                  <a class="dropdown-item" id="contact" href="/contact-us">Contact Us</a>
               </li> 
 
               <!-- THIS SHOULD BRING US TO THE HOME PAGE FOR THE EMPLOYERS
@@ -69,9 +69,9 @@
                   <i class="gg-profile"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" id="about" href="/seeker_home" >Overview</a>
+                  <a class="dropdown-item" id="/about" href="/seeker_home" >Overview</a>
                   <a class="dropdown-item" href="/resume">Resume</a>
-                  <a class="dropdown-item" href="settings">Settings</a>
+                  <a class="dropdown-item" href="/settings">Settings</a>
                 </div>
               </li> 
               {%endif%}
@@ -84,14 +84,14 @@
               {%endif%}
               {% if user and user.is_authenticated %}
               <li class="nav-item  mr-4">
-                <a class="nav-link" id="logout" href="auth/logout">Log Out</a>
+                <a class="nav-link" id="logout" href="/auth/logout">Log Out</a>
               </li>
               {% else %}
               <li class="nav-item  mr-4 ">
-                <a type="button" id="login" href="auth/login" class="btn btn-outline-secondary" > Log In </a>
+                <a type="button" id="login" href="/auth/login" class="btn btn-outline-secondary" > Log In </a>
               </li>
               <li class="nav-item  mr-4 ">
-                <a type="button"id="sign-up" href="auth/user-type" class="btn btn-dark">Join Now </a>
+                <a type="button"id="sign-up" href="/auth/user-type" class="btn btn-dark">Join Now </a>
               </li>
               {% endif %}
             </ul>

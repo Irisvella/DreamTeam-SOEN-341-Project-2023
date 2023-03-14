@@ -55,7 +55,7 @@ def logout():
     logout_user()
     return redirect(url_for('views.seeker_home'))
 
-@auth.route('user-type', methods=['GET', 'POST'])
+@auth.route('/user-type', methods=['GET', 'POST'])
 def user_type():
     return render_template('auth/selection_type.html', user = current_user)
 
@@ -151,14 +151,3 @@ def signup_admin():
         else:
             flash('The secret key is incorrect', category='error')
     return render_template("auth/signup_admin.html", user=current_user)
-
-@auth.route('/contact-us', methods = ['GET','POST'])
-def contact():
-  form = ContactForm()
-  if request.method == 'POST':
-    if form.validate() == False:
-      return render_template('/contact.html', form=form)
-    else:
-      return 'Form posted.'
-  elif request.method == 'GET':
-    return render_template('/contact.html', form=form)
