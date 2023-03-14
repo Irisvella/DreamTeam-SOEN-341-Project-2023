@@ -1,11 +1,14 @@
+from flask import Flask
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash    #securing passwords 
 from . import db
 from flask_login import login_required, login_user, logout_user, current_user
 from .contactform import ContactForm
+from flask_mail import Mail, Message
 
 
+mail = Mail()
 
 auth = Blueprint('auth', __name__)
 
@@ -159,6 +162,13 @@ def contact():
     if form.validate() == False:
       return render_template('/contact.html', form=form)
     else:
-      return 'Form posted.'
+      msg = Message(form.subject.data, sender='findagoodjob101@gmail.com', recipients=['findagoodjob101@gmail.com'])
+      msg.body = """ 
+From: %s <%s> 
+%s 
+""" % (form.name.data, form.email.data, form.message.data)
+      mail.send(msg)
+      return 'Thank you for your message. We will get back to you asap.'
   elif request.method == 'GET':
     return render_template('/contact.html', form=form)
+ 
