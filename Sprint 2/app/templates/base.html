@@ -9,8 +9,8 @@
         <!--This is the link for all icons in the website -->
         <link rel="stylesheet" href="https://kit.fontawesome.com/3c22080b59.css" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-        <link href='https://css.gg/profile.css' rel='stylesheet'>
-        <link href='https://css.gg/bell.css' rel='stylesheet'>
+        <link href='https://unpkg.com/css.gg@2.0.0/icons/css/bell.css' rel='stylesheet'>
+        <link href='https://unpkg.com/css.gg@2.0.0/icons/css/profile.css' rel='stylesheet'>
 
     <title>{% block title %}Title Page{% endblock %}</title>
     </head>
@@ -35,6 +35,12 @@
                   <a class="nav-link" id="findajob" href="/jobposting">Find a job</a>
                 </li>
               {% endif %}
+
+              {%if user and user.is_authenticated and user.profile == 'employer'%}
+              <li class="nav-item  mr-4">
+                <a class="nav-link" id="hiretalent" href="/create_post">Hire Talent</a>
+              </li>
+              {%endif%}
 
               <li class="nav-item dropdown  mr-4">
                 <a class="nav-link dropdown-toggle" style="cursor: pointer;"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,7 +75,7 @@
                   <i class="gg-profile"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" id="/about" href="/seeker_home" >Overview</a>
+                  <a class="dropdown-item" id="/overview" href="/overview" >Overview</a>
                   <a class="dropdown-item" href="/resume">Resume</a>
                   <a class="dropdown-item" href="/settings">Settings</a>
                 </div>
@@ -77,11 +83,6 @@
               {%endif%}
 
 
-              {%if user and user.is_authenticated and user.profile == 'employer'%}
-              <li class="nav-item  mr-4">
-                <a class="nav-link" id="hiretalent" href="/create_post">Hire Talent</a>
-              </li>
-              {%endif%}
               {% if user and user.is_authenticated %}
               <li class="nav-item  mr-4">
                 <a class="nav-link" id="logout" href="/auth/logout">Log Out</a>

@@ -53,7 +53,7 @@ def logout():
     user = current_user
     user.authenticated = False
     logout_user()
-    return redirect(url_for('views.seeker_home'))
+    return redirect(url_for('main.seeker_home'))
 
 @auth.route('/user-type', methods=['GET', 'POST'])
 def user_type():
@@ -88,7 +88,7 @@ def sign_up():
             db.session.commit()
             login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 
             flash('Account created successfully.', category='success')
-            return redirect(url_for('views.seeker_home'))
+            return redirect(url_for('main.seeker_home'))
     return render_template("auth/signup.html", user=current_user)
 
 @auth.route('/signup_employer', methods=['GET', 'POST'])
@@ -117,7 +117,7 @@ def signup_employer():
             db.session.commit()
             login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 
             flash('Account created successfully.', category='success')
-            return redirect(url_for('views.employer_home'))
+            return redirect(url_for('main.employer_home'))
     return render_template("auth/signup_employer.html", user=current_user)
 
 @auth.route('/signup_admin', methods=['GET', 'POST'])
@@ -147,7 +147,7 @@ def signup_admin():
             db.session.commit()
             login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 
             flash('Account created successfully.', category='success')
-            return redirect(url_for('views.admin_home'))
+            return redirect(url_for('main.admin_home'))
         else:
             flash('The secret key is incorrect', category='error')
     return render_template("auth/signup_admin.html", user=current_user)

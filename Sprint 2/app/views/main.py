@@ -22,6 +22,17 @@ def home():
     posts = Post.query.all()
     return render_template("home/home.html", user=current_user, posts=posts)  #renders the HTML inside the home.html file
 
+@main.route('/overview', methods=['GET', 'POST'])
+def overview():
+    if current_user.profile == 'employer':
+        return redirect(url_for('main.employer_home'))
+    elif current_user.profile == 'seeker':
+        return redirect(url_for('main.seeker_home'))
+    elif current_user.profile == 'admin':
+        return redirect(url_for('main.admin_home'))
+    return render_template('home/overview.html')
+
+
 @main.route('/seeker_home')
 @login_required
 def seeker_home():
@@ -55,11 +66,11 @@ def create_post():
         if not text:
             flash('Post cannot be empty', category ='error')
         else:
-            post = Post(text=text, title=title, company=company, address=address, salary=salary, field=field, author=current_user.id)
+            post = Post(text=text, title=title, company=company, address=address, salary=salary, field=field, author_id=current_user.id)
             db.session.add(post)
             db.session.commit()
             flash('Post created',category ='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('main.home'))
 
     return render_template('create_post.html',user=current_user)
 
@@ -94,7 +105,7 @@ def posts(username):
         flash('No user wih that username exists.', category='error')
         return redirect(url_for('main.home'))
 
-    post = Post.query.filter_by(author=user.id).all()
+    post = Post.query.filter_by(author_id=user.id).all()
     return render_template("posts.html", user=current_user, posts= post,username=username )
 
 @main.route('/search', methods=['GET', 'POST'])
@@ -123,17 +134,17 @@ def resume():
     if request.method == 'POST':
         '''if 'resume' not in request.files:
             flash('No file selected', category='error')
-            return redirect(url_for('views.resume'))
+            return redirect(url_for('main.resume'))
 
         # Get the file object from the form
         resume_file = request.files['resume']
         if resume_file.filename == '':
             flash('No file selected', category='error')
-            return redirect(url_for('views.resume'))
+            return redirect(url_for('main.resume'))
 
         if not allowed_file(resume_file.filename):
             flash('Invalid file type', category='error')
-            return redirect(url_for('views.resume'))
+            return redirect(url_for('main.resume'))
        
         # Get the file contents as bytes
         resume_data = resume_file.read()
