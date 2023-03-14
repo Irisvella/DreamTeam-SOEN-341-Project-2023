@@ -68,20 +68,33 @@ def jobposting():
     print(posts)
     return render_template("jobposting.html", user=current_user, posts=posts)
 
+@views.route("/myposts", methods=['GET', 'POST'])
+def myposts():
+    posts = Post.query.filter_by(author=current_user.id).all()
+    print(posts)
+    return render_template("myposts.html", user=current_user, posts=posts)
+
+@views.route("/editpost/<id>", methods = ['POST', 'GET'])
+@login_required
+def editpost(id):
+    post = Post.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        post.title = request.form['title']
+        post.text = request.form['text']
+        db.session.commit()
+        return redirect(url_for('views.myposts'))
+    return render_template('editpost.html', post=post, user=current_user)
 
 @views.route("/delete-post/<id>")
 @login_required
 def delete_post(id):
     post = Post.query.filter_by(id=id).first()
-
     if not post:
         flash ("Post does not exist.", category='error')
-
     else:
         db.session.delete(post)
         db.session.commit()
         flash('Post deleted', category='success')
-
     return redirect (url_for('views.home'))
 
 @views.route("/posts/<username>")
