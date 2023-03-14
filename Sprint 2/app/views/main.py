@@ -178,6 +178,11 @@ def settings():
     #TODO decide which elements we should be able to affect
     return render_template('settings.html', user=current_user)
 
+@main.route('/help', methods=['GET', 'POST'])
+def help():
+    #TODO make a contact us page 
+    return render_template('help.html')
+
 @main.route('/admin_home', methods=['GET', 'POST'])
 @login_required
 def admin_home():
