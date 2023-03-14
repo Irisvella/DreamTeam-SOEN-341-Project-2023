@@ -2,24 +2,32 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
-
-
+from flask_mail import Mail
 
 db = SQLAlchemy() #sets up the db. database variable is db
 DB_NAME = "database.sqlite" #the name of the database
 
 def create_app():
+
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'skey1'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}' #db is located in the website folder
-    db.init_app(app) #initialized db with the current app 
-
-
+    db.init_app(app) #initialized db with the current app
 
     from .views import views
     from .auth import auth
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
+
+    #mail smtp initializaton
+    mail = Mail()
+    app.config["MAIL_SERVER"] = "smtp.gmail.com"
+    app.config["MAIL_PORT"] = 465
+    app.config["MAIL_USE_SSL"] = True
+    app.config["MAIL_USERNAME"] = 'findagoodjob101@gmail.com'
+    #app password, real password is goodjob123
+    app.config["MAIL_PASSWORD"] = 'lswcxksinkcjojuc'
+    mail.init_app(app)
 
     #import models file to define the classes before creating the db
     from .models import User, Post
