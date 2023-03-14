@@ -85,6 +85,26 @@ def editpost(id):
         return redirect(url_for('views.myposts'))
     return render_template('editpost.html', post=post, user=current_user)
 
+@views.route("/editinfo/<id>", methods = ['POST', 'GET'])
+@login_required
+def editinfo(id):
+    user = User.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        if user.profile == 'seeker':
+            user.email = request.form['email']
+            user.phone_number = request.form['phone_number']
+           # user.password = request.form['password']
+            db.session.commit()
+            return redirect(url_for('views.seeker_home'))
+        if user.profile == 'employer':
+            user.email = request.form['email']
+            user.phone_number = request.form['phone_number']
+            #user.password = request.form['password']
+            db.session.commit()
+            return redirect(url_for('views.employer_home'))
+    return render_template('editinfo.html', user=current_user)
+
+
 @views.route("/delete-post/<id>")
 @login_required
 def delete_post(id):

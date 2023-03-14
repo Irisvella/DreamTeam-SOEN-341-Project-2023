@@ -1,3 +1,5 @@
+<!--Page to edit job postings  -->
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -12,5 +14,6 @@
       <textarea class="form-control" id="text" name="text" rows="10" required>{{ post.text }}</textarea>
     </div>
     <button type="submit" class="btn btn-primary">Save changes</button>
+    <button type="reset">Reset </button>
   </form>
 {% endblock %}
