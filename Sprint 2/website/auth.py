@@ -9,7 +9,6 @@ from flask_mail import Mail, Message
 
 
 mail = Mail()
-
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -168,7 +167,7 @@ From: %s <%s>
 %s 
 """ % (form.name.data, form.email.data, form.message.data)
       mail.send(msg)
-      return 'Thank you for your message. We will get back to you asap.'
+      return render_template('/contactsuccess.html')
   elif request.method == 'GET':
     return render_template('/contact.html', form=form)
  

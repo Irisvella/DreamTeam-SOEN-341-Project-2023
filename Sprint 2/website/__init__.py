@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
-from flask_mail import Mail, Message
+from flask_mail import Mail
 
 db = SQLAlchemy() #sets up the db. database variable is db
 DB_NAME = "database.sqlite" #the name of the database
