@@ -142,8 +142,11 @@ def notifications_page():
     return render_template('test_apply.html', notifications=notifications)
 
 def get_notifications():
-    notifications = Notification.query.filter_by(user_id=current_user.id).all()
-    return notifications
+    if current_user:
+        notifications = Notification.query.filter_by(user_id=current_user.id).all()
+        return notifications
+    else:
+        return []
 
 @main.context_processor
 def inject_notifications():
