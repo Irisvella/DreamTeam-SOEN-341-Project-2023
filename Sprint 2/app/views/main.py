@@ -141,6 +141,7 @@ def notifications_page():
     notifications = Notification.query.filter_by(user_id=current_user.id).all()
     return render_template('test_apply.html', notifications=notifications)
 
+@login_required
 def get_notifications():
     if current_user:
         notifications = Notification.query.filter_by(user_id=current_user.id).all()
