@@ -66,7 +66,11 @@
                   <i class="gg-bell"></i> 
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/resume">List of notifications</a>
+                  <ul>
+                    {% for notification in notifications %}
+                        <a class="dropdown-item" style="white-space: normal; color: green;" href="/notifications">{{ notification.message }} ({{ notification.datetime.strftime('%Y-%m-%d %H:%M:%S') }})</a>
+                    {% endfor %}
+                </ul>
                 </div>
               </li> 
 

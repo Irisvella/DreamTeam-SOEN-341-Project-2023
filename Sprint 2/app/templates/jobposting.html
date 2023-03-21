@@ -29,10 +29,23 @@
         <div class="card-title">{{ post.title }}<br>{% print("Company: " + post.user.company_name) %}</div>
         <a href="/posts/{{ post.user.username }}">{{ post.user.username }}</a>
         {% if current_user.id == post.author_id %}
-        <div class="btn-group">
-          <button type="button" class="button"></button>
-          <a href="/delete-post/{{ post.id }}" class="button">Delete</a>
-        </div>
+          <div class="btn-group">
+            <button type="button" class="button"></button>
+            <a href="/delete-post/{{ post.id }}" class="button">Delete</a>
+          </div>
+          {% else %}
+          {% set has_applied = current_user in post.applicants %}
+          <div class="btn-group">
+            <button type="button" class="button"></button>
+            {% if has_applied %}
+              <button class="button" disabled>Applied</button>
+            {% else %}
+            <form method="POST" action="{{ url_for('main.apply_post', id=post.id) }}" enctype="multipart/form-data">
+                <input type="file" name="resume_file" required>
+                <button class="button" type="submit">Apply</button>
+              </form>
+          {% endif %}
+  </div>
         {% endif %}
       </div>
       <div class="card-body">

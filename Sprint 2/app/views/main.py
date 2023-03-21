@@ -3,10 +3,11 @@ from flask import Blueprint, render_template, request,flash, redirect, url_for, 
 from flask_login import login_required, current_user
 from flask import Flask, render_template
 from werkzeug.utils import secure_filename
-from ..models import Post, User
+from ..models import Post, User, Application, Notification
 from .. import db
 from ..forms import ContactForm
 import io
+from datetime import datetime
 
 
 main = Blueprint('main', __name__)
@@ -95,6 +96,59 @@ def delete_post(id):
         flash('Post deleted', category='success')
 
     return redirect (url_for('main.home'))
+
+@main.route("/apply-post/<id>", methods=['GET', 'POST'])
+@login_required
+def apply_post(id):
+    post = Post.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        application = Application()
+        application.user_id = current_user.id
+        application.post_id = id
+        application.author_num = post.author_id
+        application.applicant_name = current_user.first_name
+        application.applicant_resume = current_user.resume_file
+        application.date_applied = datetime.utcnow()
+        # Get the file object from the form
+        resume = request.files['resume_file']
+        # Get the file contents as bytes
+        resume_data = resume.read()
+        # Save the file contents to the database as BLOB
+        application.applicant_resume = bytes(resume_data)
+        flash('Resume uploaded successfully!', category='success')
+        
+        application.resume_file = request.files['resume_file'].read()
+        db.session.add(application)
+
+        # Notify post author
+        '''author = User.query.filter_by(id=id)
+        author.notifications.append({'message': message, 'datetime': datetime.utcnow()})
+        db.session.commit()'''
+        
+        message = f'{current_user.first_name} {current_user.last_name} has applied to your job post: {post.title}'
+
+        notification = Notification(message=message, user_id=post.author_id)
+        db.session.add(notification)
+        db.session.commit()
+
+        flash('Your application has been submitted.')
+        return redirect(url_for('main.admin_home', notification=notification, post=post))
+    return render_template('apply_post.html', post=post, notification=notification)
+
+@main.route("/notifications", methods=['GET', 'POST'])
+@login_required
+def notifications_page():
+    notifications = Notification.query.filter_by(user_id=current_user.id).all()
+    return render_template('test_apply.html', notifications=notifications)
+
+def get_notifications():
+    notifications = Notification.query.filter_by(user_id=current_user.id).all()
+    return notifications
+
+@main.context_processor
+def inject_notifications():
+    notifications = get_notifications()
+    return dict(notifications=notifications)
 
 @main.route("/posts/<username>")
 @login_required
@@ -198,7 +252,8 @@ def help():
 @main.route('/admin_home', methods=['GET', 'POST'])
 @login_required
 def admin_home():
-    return render_template('home/admin_home.html', user=current_user)
+    notifications = get_notifications()
+    return render_template('home/admin_home.html', user=current_user, notifications=notifications)
 
 @main.route('/contact-us', methods = ['GET','POST'])
 def contact():

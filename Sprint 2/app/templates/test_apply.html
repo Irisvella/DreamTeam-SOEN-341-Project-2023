@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Notifications</h1>
+  <ul>
+    {% for notification in notifications %}
+      <li>User {{ notification['user_id'] }} applied to post {{ notification['post_id'] }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
