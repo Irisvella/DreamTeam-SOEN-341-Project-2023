@@ -16,7 +16,8 @@
     </head>
     <body>
        <!--This is the nav bar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       
+        <nav class="navbar navbar-expand-lg navbar-light ">
           <a class="navbar-brand " href="/">GOODJOB</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -93,9 +94,11 @@
                 <a class="nav-link" id="logout" href="/logout">Log Out</a>
               </li>
               {% else %}
+     
               <li class="nav-item  mr-4 ">
-                <a type="button" id="login" href="/login" class="btn btn-outline-secondary" > Log In </a>
+                <a type="nav-link"id="login" href="/login" class="btn btn-dark">Log In </a>
               </li>
+
               <li class="nav-item  mr-4 ">
                 <a type="button"id="sign-up" href="/user-type" class="btn btn-dark">Join Now </a>
               </li>

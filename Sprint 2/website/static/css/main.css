@@ -75,12 +75,19 @@ input:focus + datalist {
 }
 
 
+.navbar{
+  background-color: #FBEECA ;
+}
+.navbar:hover{
+  background-color: #ffffff ;
+}
+
 /*---------------------
   Hero
 -----------------------*/
 
 .first-section{
-  background-color: #FBEECA ;
+  background: linear-gradient(90deg, rgba(251,202,202,1) 0%, rgba(251,238,202,1) 0%, rgba(254,252,247,1) 73%, rgba(255,254,252,1) 93%, rgba(255,255,254,1) 95%, rgba(255,255,255,1) 99%);
 }
 
 .card {
@@ -122,7 +129,7 @@ input:focus + datalist {
     transform: translateY(-50%);
    }
    .card-body:hover {
-    background-color: #ff0043;
+    background-color: lightblue;
     color: #fff;
   }
   
@@ -159,7 +166,7 @@ input:focus + datalist {
   align-items: center;
   justify-content: center;
 }
-/*
+
 .button {
   width: 140px;
   height: 45px;
@@ -185,7 +192,7 @@ input:focus + datalist {
   transform: translateY(-7px);
 }
 
-*/
+
 
 
 
