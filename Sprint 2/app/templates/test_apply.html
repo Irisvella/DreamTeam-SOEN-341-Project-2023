@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Notifications</h1>
+  <h1>Applications</h1>
   <ul>
-    {% for notification in notifications %}
-      <li>User {{ notification['user_id'] }} applied to post {{ notification['post_id'] }}</li>
+    {% for application in applications %}
+      <li>User {{ application['applicant_name'] }} applied to post {{ application['title'] }}</li>
+      <a href="/" >View applicant details</a>
+      <a href="/contact-applicant/{{ application.applicant_name }}/{{ application.post_id }}">Contact applicant</a>
+      <a href="/refuse-applicant/{{ application.applicant_name }}/{{ application.post_id }}">Refuse applicant</a>
     {% endfor %}
   </ul>
 {% endblock %}

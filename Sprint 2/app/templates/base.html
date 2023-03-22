@@ -67,9 +67,15 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <ul>
-                    {% for notification in notifications %}
+                    {% if user.profile == 'employer' %}
+                      {% for notification in notifications %}
+                          <a class="dropdown-item" style="white-space: normal; color: green;" href="/applications">{{ notification.message }} ({{ notification.datetime.strftime('%Y-%m-%d %H:%M:%S') }})</a>
+                      {% endfor %}
+                    {% else %}
+                      {% for notification in notifications %}
                         <a class="dropdown-item" style="white-space: normal; color: green;" href="/notifications">{{ notification.message }} ({{ notification.datetime.strftime('%Y-%m-%d %H:%M:%S') }})</a>
-                    {% endfor %}
+                      {% endfor %}
+                    {% endif %}
                 </ul>
                 </div>
               </li> 

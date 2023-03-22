@@ -95,7 +95,7 @@ def delete_post(id):
         db.session.commit()
         flash('Post deleted', category='success')
 
-    return redirect (url_for('main.home'))
+    return redirect (url_for('main.home'), user=current_user)
 
 @main.route("/apply-post/<id>", methods=['GET', 'POST'])
 @login_required
@@ -108,6 +108,7 @@ def apply_post(id):
         application.author_num = post.author_id
         application.applicant_name = current_user.first_name
         application.applicant_resume = current_user.resume_file
+        application.title = post.title
         application.date_applied = datetime.utcnow()
         # Get the file object from the form
         resume = request.files['resume_file']
@@ -132,14 +133,76 @@ def apply_post(id):
         db.session.commit()
 
         flash('Your application has been submitted.')
-        return redirect(url_for('main.admin_home', notification=notification, post=post))
-    return render_template('apply_post.html', post=post, notification=notification)
+        return redirect(url_for('main.admin_home', notification=notification, post=post, user=current_user))
+    return render_template('apply_post.html', post=post, notification=notification, user=current_user)
 
-@main.route("/notifications", methods=['GET', 'POST'])
 @login_required
+@main.route('/applications', methods=['GET', 'POST'])
+def applications_review():
+    applications = Application.query.filter_by(author_num=current_user.id).all()
+    post = None  # Initialize post to None
+
+    return render_template('test_apply.html', post=post, applications=applications, user=current_user)
+
+@login_required
+@main.route('/notifications', methods=['GET', 'POST'])
 def notifications_page():
+    applications = Application.query.filter_by(author_num=current_user.id).all()
     notifications = Notification.query.filter_by(user_id=current_user.id).all()
-    return render_template('test_apply.html', notifications=notifications)
+    post = None  # Initialize post to None
+
+    return render_template('notifications.html', post=post, applications=applications, notifications=notifications, user=current_user)
+
+'''
+@login_required
+@main.route('/notifications', methods=['GET', 'POST'])
+def notifications_review():
+    applications = Application.query.filter_by(author_num=current_user.id).all()
+    post = None  # Initialize post to None
+
+    return render_template('test_apply.html', post=post, applications=applications)
+'''
+
+@main.route('/contact-applicant/<string:applicant_name>/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def contact_applicant(applicant_name, post_id):
+    # Find the user with the specified name
+    user = User.query.filter_by(first_name=applicant_name).first()
+    post = Post.query.filter_by(id=post_id)
+    
+    if user:
+        # Send a notification to the user
+        message = "You've been contacted by {} about your application.".format(current_user.first_name)
+        notification = Notification(message=message, user_id=user.id)
+        db.session.add(notification)
+        db.session.commit()
+        
+        flash("Your message has been sent to {}.".format(applicant_name))
+    else:
+        flash("Couldn't find a user with the name {}.".format(applicant_name))
+    
+    return redirect(url_for('main.applications_review', user=current_user))
+
+@main.route('/refuse-applicant/<string:applicant_name>/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def refuse_applicant(applicant_name, post_id):
+    # Find the user with the specified name
+    user = User.query.filter_by(first_name=applicant_name).first()
+    post = Post.query.filter_by(id=post_id).first()
+    
+    if user:
+        # Send a notification to the user
+        message = "Unfortunately your application has not been retained at the moment for the {} position at {}.".format(post.title, current_user.company_name)
+        notification = Notification(message=message, user_id=user.id)
+        db.session.add(notification)
+        db.session.commit()
+        
+        flash("Your message has been sent to {}.".format(applicant_name))
+    else:
+        flash("Couldn't find a user with the name {}.".format(applicant_name))
+    
+    return redirect(url_for('main.applications_review', user=current_user))
+
 
 @login_required
 def get_notifications():

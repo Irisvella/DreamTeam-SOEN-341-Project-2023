@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Notifications</h1>
+  <ul>
+    {% for notification in notifications %}
+      <li>Notification #{{ notification['id'] }} : {{ notification['message'] }} received on {{ notification['datetime'] }}</li>
+      <a href="/" >View posting details</a>
+    {% endfor %}
+  </ul>
+{% endblock %}

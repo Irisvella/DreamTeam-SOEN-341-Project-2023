@@ -19,8 +19,6 @@ class User(db.Model, UserMixin):
     profile = db.Column(db.String(20)) #values are "seeker", "employer", "admin"
     Posts = db.relationship('Post', backref='user', passive_deletes=True)
 
-
-
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50))
@@ -38,6 +36,7 @@ class Application(db.Model):
     applicant_name = db.Column(db.String(50))
     author_num = db.Column(db.String(50))
     applicant_resume = db.Column(db.LargeBinary)
+    title = db.Column(db.String(50))
     date_applied = db.Column(db.DateTime(timezone=True), default=func.now())
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
     
