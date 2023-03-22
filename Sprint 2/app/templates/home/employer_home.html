@@ -7,7 +7,9 @@
 
 <h1>{% print("Welcome, " + user.company_name + "!" )%}</h1>
 </br>
-<a id="create_post" href="/create_post" >Create a job posting.</a>
+<a id="create_post" href="/create_post" >Create a job posting.</a><br>
+<a id="my_posts" href="/myposts"> My Job Postings</a><br>
+<a id = "editinfo" href="/editinfo/{{user.id}}">Edit information</a>
 <h2>Your Information</h2>
 {% print("Phone number: " + user.phone_number) %} </br>
 {% print("Email address: " + user.email) %}
