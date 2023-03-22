@@ -81,6 +81,43 @@ def jobposting():
     print(posts)
     return render_template("jobposting.html", user=current_user, posts=posts)
 
+@views.route("/myposts", methods=['GET', 'POST'])
+def myposts():
+    posts = Post.query.filter_by(author=current_user.id).all()
+    print(posts)
+    return render_template("myposts.html", user=current_user, posts=posts)
+
+@views.route("/editpost/<id>", methods = ['POST', 'GET'])
+@login_required
+def editpost(id):
+    post = Post.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        post.title = request.form['title']
+        post.text = request.form['text']
+        db.session.commit()
+        return redirect(url_for('views.myposts'))
+    return render_template('editpost.html', post=post, user=current_user)
+
+@views.route("/editinfo/<id>", methods = ['POST', 'GET'])
+@login_required
+def editinfo(id):
+    user = User.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        if user.profile == 'seeker':
+            user.email = request.form['email']
+            user.phone_number = request.form['phone_number']
+           # user.password = request.form['password']
+            db.session.commit()
+            return redirect(url_for('views.seeker_home'))
+        if user.profile == 'employer':
+            user.email = request.form['email']
+            user.phone_number = request.form['phone_number']
+            #user.password = request.form['password']
+            db.session.commit()
+            return redirect(url_for('views.employer_home'))
+    return render_template('editinfo.html', user=current_user)
+
+
 
 @main.route("/delete-post/<id>")
 @login_required
@@ -120,11 +157,6 @@ def apply_post(id):
         
         application.resume_file = request.files['resume_file'].read()
         db.session.add(application)
-
-        # Notify post author
-        '''author = User.query.filter_by(id=id)
-        author.notifications.append({'message': message, 'datetime': datetime.utcnow()})
-        db.session.commit()'''
         
         message = f'{current_user.first_name} {current_user.last_name} has applied to your job post: {post.title}'
 
@@ -152,16 +184,6 @@ def notifications_page():
     post = None  # Initialize post to None
 
     return render_template('notifications.html', post=post, applications=applications, notifications=notifications, user=current_user)
-
-'''
-@login_required
-@main.route('/notifications', methods=['GET', 'POST'])
-def notifications_review():
-    applications = Application.query.filter_by(author_num=current_user.id).all()
-    post = None  # Initialize post to None
-
-    return render_template('test_apply.html', post=post, applications=applications)
-'''
 
 @main.route('/contact-applicant/<string:applicant_name>/<int:post_id>', methods=['GET', 'POST'])
 @login_required
@@ -253,27 +275,6 @@ def search():
 @login_required
 def resume():
     if request.method == 'POST':
-        '''if 'resume' not in request.files:
-            flash('No file selected', category='error')
-            return redirect(url_for('main.resume'))
-
-        # Get the file object from the form
-        resume_file = request.files['resume']
-        if resume_file.filename == '':
-            flash('No file selected', category='error')
-            return redirect(url_for('main.resume'))
-
-        if not allowed_file(resume_file.filename):
-            flash('Invalid file type', category='error')
-            return redirect(url_for('main.resume'))
-       
-        # Get the file contents as bytes
-        resume_data = resume_file.read()
-        # Save the file contents to the database as BLOB
-        current_user.resume_file = resume_data
-        db.session.commit()
-        flash('Resume uploaded successfully!', category='success')
-        '''
         if request.method == 'POST':
             # Get the file object from the form
             resume = request.files['resume']
