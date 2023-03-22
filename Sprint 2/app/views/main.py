@@ -8,8 +8,9 @@ from .. import db
 from ..forms import ContactForm
 import io
 from datetime import datetime
+from flask_mail import Mail, Message
 
-
+mail = Mail()
 main = Blueprint('main', __name__)
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'doc', 'docx'}
@@ -83,7 +84,7 @@ def jobposting():
 
 @main.route("/myposts", methods=['GET', 'POST'])
 def myposts():
-    posts = Post.query.filter_by(author=current_user.id).all()
+    posts = Post.query.filter_by(author_id=current_user.id).all()
     print(posts)
     return render_template("myposts.html", user=current_user, posts=posts)
 
@@ -323,13 +324,19 @@ def admin_home():
     notifications = get_notifications()
     return render_template('home/admin_home.html', user=current_user, notifications=notifications)
 
-@main.route('/contact-us', methods = ['GET','POST'])
+@main.route('/contact.html', methods = ['GET','POST'])
 def contact():
   form = ContactForm()
   if request.method == 'POST':
     if form.validate() == False:
       return render_template('/contact.html', form=form)
     else:
-      return 'Form posted.'
+      msg = Message(form.subject.data, sender='findagoodjob101@gmail.com', recipients=['findagoodjob101@gmail.com'])
+      msg.body = """ 
+From: %s <%s> 
+%s 
+""" % (form.name.data, form.email.data, form.message.data)
+      mail.send(msg)
+      return render_template('/contactsuccess.html')
   elif request.method == 'GET':
     return render_template('/contact.html', form=form)
