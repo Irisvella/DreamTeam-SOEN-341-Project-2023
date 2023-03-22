@@ -4,9 +4,9 @@ from werkzeug.security import generate_password_hash, check_password_hash    #se
 from .. import db
 from flask_login import login_required, login_user, logout_user, current_user
 from ..forms import ContactForm
+from flask_mail import Mail, Message
 
-
-
+mail = Mail()
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -151,3 +151,21 @@ def signup_admin():
         else:
             flash('The secret key is incorrect', category='error')
     return render_template("auth/signup_admin.html", user=current_user)
+
+@auth.route('/contact.html', methods = ['GET','POST'])
+def contact():
+  form = ContactForm()
+  if request.method == 'POST':
+    if form.validate() == False:
+      return render_template('/contact.html', form=form)
+    else:
+      msg = Message(form.subject.data, sender='findagoodjob101@gmail.com', recipients=['findagoodjob101@gmail.com'])
+      msg.body = """ 
+From: %s <%s> 
+%s 
+""" % (form.name.data, form.email.data, form.message.data)
+      mail.send(msg)
+      return render_template('/contactsuccess.html')
+  elif request.method == 'GET':
+    return render_template('/contact.html', form=form)
+ 
