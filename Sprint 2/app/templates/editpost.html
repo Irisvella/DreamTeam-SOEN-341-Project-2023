@@ -1,0 +1,19 @@
+<!--Page to edit job postings  -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Edit post</h1>
+  <form method="POST">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" value="{{ post.title }}" required>
+    </div>
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea class="form-control" id="text" name="text" rows="10" required>{{ post.text }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save changes</button>
+    <button type="reset">Reset </button>
+  </form>
+{% endblock %}

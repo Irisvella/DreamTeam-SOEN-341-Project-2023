@@ -81,13 +81,13 @@ def jobposting():
     print(posts)
     return render_template("jobposting.html", user=current_user, posts=posts)
 
-@views.route("/myposts", methods=['GET', 'POST'])
+@main.route("/myposts", methods=['GET', 'POST'])
 def myposts():
     posts = Post.query.filter_by(author=current_user.id).all()
     print(posts)
     return render_template("myposts.html", user=current_user, posts=posts)
 
-@views.route("/editpost/<id>", methods = ['POST', 'GET'])
+@main.route("/editpost/<id>", methods = ['POST', 'GET'])
 @login_required
 def editpost(id):
     post = Post.query.filter_by(id=id).first()
@@ -95,10 +95,10 @@ def editpost(id):
         post.title = request.form['title']
         post.text = request.form['text']
         db.session.commit()
-        return redirect(url_for('views.myposts'))
+        return redirect(url_for('main.myposts'))
     return render_template('editpost.html', post=post, user=current_user)
 
-@views.route("/editinfo/<id>", methods = ['POST', 'GET'])
+@main.route("/editinfo/<id>", methods = ['POST', 'GET'])
 @login_required
 def editinfo(id):
     user = User.query.filter_by(id=id).first()
@@ -108,13 +108,13 @@ def editinfo(id):
             user.phone_number = request.form['phone_number']
            # user.password = request.form['password']
             db.session.commit()
-            return redirect(url_for('views.seeker_home'))
+            return redirect(url_for('main.seeker_home'))
         if user.profile == 'employer':
             user.email = request.form['email']
             user.phone_number = request.form['phone_number']
             #user.password = request.form['password']
             db.session.commit()
-            return redirect(url_for('views.employer_home'))
+            return redirect(url_for('main.employer_home'))
     return render_template('editinfo.html', user=current_user)
 
 

@@ -1,0 +1,35 @@
+<!-- When the employer clicks "My Posts" on his profile or nav bar, it will redirect to this page where all his job posts will be displayed  -->
+
+{% extends "base.html" %}
+
+{% block title %}My Posts{% endblock %}
+
+{% block content %}
+  <br>
+  <h1>My Job Postings</h1>
+  <div id="posts">
+    {% if posts %}
+    {% for post in posts %}
+    <div class="card border-dark">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-title">{{ post.title }}<br></div>
+        <a href="/posts/{{ post.user.username }}">{{ post.user.username }}</a>
+        <div class="btn-group">
+          <button type="button" class="button"></button>
+          <a href="/delete-post/{{ post.id }}" class="button">Delete</a>
+          <button type="button" class="button"></button>
+          <a href="/editpost/{{post.id}}" class="button">Edit</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-text">{{ post.text }}</div>
+      </div>
+      <div class="card-footer text-muted">{{ post.date_created }}</div>
+    </div>
+    <br>
+    {% endfor %}
+    {% else %}
+    <p>You currently have no job posting.</p>
+    {% endif %}
+  </div>
+{% endblock %}
