@@ -28,3 +28,21 @@ items.forEach((item, i) => {
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("page-loader").style.display = "none";
 });
+
+
+/****This js is to animate text on  homepage */
+
+const observer = new IntersectionObserver((entries)=>{
+
+  entries.forEach((entry) =>{
+    if (entry.isIntersecting){
+      entry.target.classList.add('show');
+    }else{
+      entry.target.classList.remove('show');
+    }
+
+  });
+});
+
+const dynamicText = document.querySelectorAll('.mb-4');
+dynamicText.forEach((el)=> observer.observe(el));

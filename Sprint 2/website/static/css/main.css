@@ -1,3 +1,4 @@
+/*background: url("../images/hero-1.jpg");*/
 *{
   margin: 0;
   text-decoration: none;
@@ -9,7 +10,7 @@ a:hover i {
   transform: scale(1.2);
   color: blue;  
 }
-
+/*
 .link {
   height: 70px;
   width: 70px;
@@ -19,7 +20,7 @@ a:hover i {
   margin: 7px;
   line-height: 80px;
 }
-
+*/
 .gg-bell{
   color: black;
 }
@@ -76,18 +77,36 @@ input:focus + datalist {
 
 
 .navbar{
-  background-color: #FBEECA ;
+ 
 }
-.navbar:hover{
-  background-color: #ffffff ;
+
+.logo{
+  color: #000;
+  font-weight:400;
+  padding-left: 50px;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+ text-decoration: none;
 }
+
 
 /*---------------------
   Hero
 -----------------------*/
 
 .first-section{
-  background: linear-gradient(90deg, rgba(251,202,202,1) 0%, rgba(251,238,202,1) 0%, rgba(254,252,247,1) 73%, rgba(255,254,252,1) 93%, rgba(255,255,254,1) 95%, rgba(255,255,255,1) 99%);
+  background: linear-gradient(181.5deg, rgba(240,249,248,0.3) 50%, rgba(240,249,248,1) 80%);
+     
+
+}
+
+h1{
+  font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 64px;
+    letter-spacing: .02em;
+    line-height: 60pt;
 }
 
 .card {
@@ -129,7 +148,7 @@ input:focus + datalist {
     transform: translateY(-50%);
    }
    .card-body:hover {
-    background-color: lightblue;
+    background-color: #5FE4D4;
     color: #fff;
   }
   
@@ -150,6 +169,19 @@ input:focus + datalist {
 }
 
 
+/***/
+.mb-4{
+  opacity: 0;
+  transition:all 1s;
+  filter: blur(5px);
+  /*transform: translateX(0); to slide in left*/
+}
+.show{
+  opacity:1;
+  filter: blur(0);
+  
+}
+
 .second-section{
   padding-top: 100px;
 }
@@ -168,10 +200,9 @@ input:focus + datalist {
 }
 
 .button {
-  width: 140px;
+  width: 200px;
   height: 45px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 11px;
+  font: size 12px;px;
   text-transform: uppercase;
   letter-spacing: 2.5px;
   font-weight: 500;
@@ -186,7 +217,7 @@ input:focus + datalist {
   }
 
 .button:hover {
-  background-color: #2EE59D;
+  background-color: #5FE4D4;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
   transform: translateY(-7px);
