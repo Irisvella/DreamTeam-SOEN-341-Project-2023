@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash    #se
 from .. import db
 from flask_login import login_required, login_user, logout_user, current_user
 from ..forms import ContactForm
+from flask_mail import Mail, Message
 
 auth = Blueprint('auth', __name__)
 
