@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 from flask_mail import Mail
+import os
 
 db = SQLAlchemy() #sets up the db. database variable is db
 DB_NAME = "database.sqlite" #the name of the database
@@ -18,6 +19,8 @@ def create_app():
     from .auth import auth
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
+
+    
 
     #mail smtp initializaton
     mail = Mail()
