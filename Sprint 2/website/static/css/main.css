@@ -29,10 +29,7 @@ i{
   position: absolute; top: 17px;
   cursor: pointer;
 }
-/*h3{
-	color: #bc6c25;
-}
-*/
+
 
 /* Style the dropdown */
 input[list]::-webkit-calendar-picker-indicator {
@@ -96,6 +93,7 @@ input:focus + datalist {
 -----------------------*/
 
 .first-section{
+  position: relative;
   background: linear-gradient(181.5deg, rgba(240,249,248,0.3) 50%, rgba(240,249,248,1) 80%);
      
 
@@ -113,9 +111,6 @@ h1{
   transition: 0.2s ease;
   border: 0;
   position: relative;width: 100%;padding-right: 15px;padding-left: 15px
-}
-.card-lg .card-body {
-  padding: 35px;
 }
 
 .card-icon {
@@ -137,39 +132,32 @@ h1{
   font-weight: 700;
 }
 .card-body {
+  margin-left: 50px;
+  margin-right: 50px;
   padding: 25px;
   padding-bottom: 30px;
-  padding: 60px;min-height: 198px;
+  padding: 60px;
   border-radius: 10px;
   background-color: #fff;transition: all .4s ease-in-out;
   box-shadow: 0 0 25px 0 rgba(20,27,202,.17)}
 
-  .card-body .icon{margin-bottom: -21px;
-    transform: translateY(-50%);
-   }
+  
    .card-body:hover {
-    background-color: #5FE4D4;
+    background-color: #E45F6F;
     color: #fff;
   }
   
-  .card-body:hover h4, 
-  .speedup:hover{
-    box-shadow: 0 0 25px 0 rgba(20,27,201,.05);
-    cursor: pointer;
-    background-color: linear-gradient(-45deg, #fb0054 0%, #f55b2a 100%)
-  }
-
 
 .rounded, .card-icon, .card {
   border-radius: 12px !important;
 }
 
-.shadow, .card, .search-wrapper .form-control, .navigation.nav-bg {
-  box-shadow: 0px 15px 60px rgba(62, 62, 62, 0.102) !important;
-}
 
 
 /***/
+.topic{
+  padding-top: 100px;
+}
 .mb-4{
   opacity: 0;
   transition:all 1s;
@@ -224,13 +212,39 @@ h1{
 }
 
 
+/**divider***/
+.custom-shape-divider-top-1679610980 {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  padding-bottom: 500px;
+}
+
+.custom-shape-divider-top-1679610980 svg {
+  position: relative;
+  display: block;
+  width: calc(105% + 1.3px);
+  height: 143px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1679610980 .shape-fill {
+  fill: #F0F9F8;
+}
+
+.custom-shape-divider-bottom-1679610837 .shape-fill {
+  fill: #F0F9F8;
+}
 
 
 
 /****PROCESS SECTION ***/
 
 .process {
-  position: relative;
+  margin-top: 50px;
+  padding-top: 100px;
+  
 }
 .process:before {
   position: absolute;
