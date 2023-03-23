@@ -1,0 +1,10 @@
+.item1 div{
+    position: relative;
+    animation-name: one;
+    animation-duration: 4s;
+  }
+  
+  @keyframes one {
+    0%   {left:-500px;}
+    100% {left:0px;}
+  }

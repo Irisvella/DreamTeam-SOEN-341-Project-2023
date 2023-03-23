@@ -5,7 +5,8 @@ from flask import Flask, render_template
 from werkzeug.utils import secure_filename
 from .models import Post, User
 from. import db
-import io
+
+
 
 
 views = Blueprint('views', __name__)
