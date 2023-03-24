@@ -10,6 +10,4 @@ Werkzeug==2.2.2
 WTForms==3.0.1
 
 # Automated tests
-pytest==<latest version>
-pytest-cov==2.4.0
 Flask-Testing==0.8.1
