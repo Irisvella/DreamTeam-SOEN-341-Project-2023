@@ -54,19 +54,29 @@ input:focus + datalist {
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
+  
 }
 
 .item {
-  width: 15vw;
-  height: 75vh;
+  width: 20vw;
+  height: 65vh;
   background-position: center;
   background-size: 75vh;
   margin: 1vw;
   border-radius: 3vw;
   display: inline-block;
   cursor: pointer;
+  
 }
-
+/***THis is for selection type.html*/
+.selectionText{
+  color: #fff;
+  text-decoration: none;
+}
+selectionText:hover{
+  color: #fff;
+  text-decoration: none;
+}
 
 :root {
 	font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
