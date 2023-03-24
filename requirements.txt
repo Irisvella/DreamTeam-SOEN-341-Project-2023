@@ -8,3 +8,7 @@ Jinja2==3.1.2
 SQLAlchemy==2.0.3
 Werkzeug==2.2.2
 WTForms==3.0.1
+
+# Automated tests
+pytest==3.0.5
+pytest-cov==2.4.0
