@@ -12,3 +12,4 @@ WTForms==3.0.1
 # Automated tests
 pytest==3.0.5
 pytest-cov==2.4.0
+Flask-Testing==1.1.0
