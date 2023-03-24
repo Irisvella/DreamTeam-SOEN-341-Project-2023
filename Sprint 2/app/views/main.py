@@ -243,7 +243,7 @@ def inject_notifications():
 @main.route("/posts/<username>")
 @login_required
 def posts(username):
-    user = user.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=username).first()
 
     if not user:
         flash('No user wih that username exists.', category='error')
