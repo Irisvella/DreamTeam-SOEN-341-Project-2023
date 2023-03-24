@@ -1,3 +1,8 @@
+$('#menu a, #fixedbar a').on('click', function(e) {
+  e.preventDefault();
+});
+
+
 const items = document.querySelectorAll('.item')
 console.log(items.length)
 

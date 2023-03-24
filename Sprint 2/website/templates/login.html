@@ -4,9 +4,26 @@
 {% block content %}
 
 <style>
-    body{
-        background-color:#F0F9F8;
-    }
+  
+    body {
+	background: linear-gradient(-45deg, #ffffff,  #95f5c3,#F0F9F8, #d9f7f0);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
     .log:hover{
         background-color: #DFF8F5;
         color: black;
