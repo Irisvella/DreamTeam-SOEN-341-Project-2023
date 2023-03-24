@@ -93,7 +93,7 @@ input:focus + datalist {
 -----------------------*/
 
 .first-section{
-  position: relative;
+  padding-top: 100px;
   background: linear-gradient(181.5deg, rgba(240,249,248,0.3) 50%, rgba(240,249,248,1) 80%);
      
 
@@ -161,7 +161,7 @@ h1{
 .mb-4{
   opacity: 0;
   transition:all 1s;
-  filter: blur(5px);
+  filter: blur(3px);
   /*transform: translateX(0); to slide in left*/
 }
 .show{
@@ -238,6 +238,42 @@ h1{
 }
 
 
+/**PARALLAX EFFECT**/
+
+.wrapper {
+  
+  margin-top: 100px;
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+  overflow-x: auto;
+  perspective: 10px;
+}
+
+.heada {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  transform-style: preserve-3d;
+  z-index: -1;
+}
+
+
+.foreground {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.peffect {
+  padding: 2rem;
+  background-color: #EEF4F7;
+  color: black;
+}
 
 /****PROCESS SECTION ***/
 
@@ -414,3 +450,101 @@ About us page
   display: inline-block;
   padding-top: 28px;
 }
+
+/* Testimonial section***/
+
+.testimonials-clean {
+  margin-top: 100px;
+  color:#313437;
+  background-color:red;
+}
+
+.testimonials-clean p {
+  color:#7d8285;
+}
+
+.testimonials-clean h2 {
+  font-weight:bold;
+  margin-bottom:40px;
+  padding-top:40px;
+  color:inherit;
+}
+
+@media (max-width:767px) {
+  .testimonials-clean h2 {
+    margin-bottom:25px;
+    padding-top:25px;
+    font-size:24px;
+  }
+}
+
+.testimonials-clean .intro {
+  font-size:16px;
+  max-width:500px;
+  margin:0 auto;
+}
+
+.testimonials-clean .intro p {
+  margin-bottom:0;
+}
+
+.testimonials-clean .people {
+  padding:50px 0 20px;
+}
+
+.testimonials-clean .element {
+  margin-bottom:32px;
+}
+
+@media (min-width:768px) {
+  .testimonials-clean .element {
+    height:220px;
+  }
+}
+
+.testimonials-clean .element .box {
+  padding:30px;
+  background-color:#fff;
+  position:relative;
+}
+
+.testimonials-clean .element .box:after {
+  content:'';
+  position:absolute;
+  left:30px;
+  bottom:-24px;
+  width:0;
+  height:0;
+  border:15px solid transparent;
+  border-width:12px 15px;
+  border-top-color:#fff;
+}
+
+.testimonials-clean .element .author {
+  margin-top:28px;
+  padding-left:25px;
+}
+
+.testimonials-clean .element .name {
+  font-weight:bold;
+  margin-bottom:2px;
+  color:inherit;
+}
+
+.testimonials-clean .element .title {
+  font-size:13px;
+  color:#9da9ae;
+}
+
+.testimonials-clean .element .description {
+  font-size:15px;
+  margin-bottom:0;
+}
+
+.testimonials-clean .element img {
+  max-width:40px;
+  float:left;
+  margin-right:12px;
+  margin-top:-5px;
+}
+

@@ -15,6 +15,10 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'doc', 'docx'}
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+from flask import Flask, send_file
+
+app = Flask(__name__)
+
 
 @views.route('/') #insert URL here
 def home():

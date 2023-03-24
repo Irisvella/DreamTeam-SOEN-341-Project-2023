@@ -46,3 +46,5 @@ const observer = new IntersectionObserver((entries)=>{
 
 const dynamicText = document.querySelectorAll('.mb-4');
 dynamicText.forEach((el)=> observer.observe(el));
+
+
