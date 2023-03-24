@@ -5,12 +5,63 @@
 
 {% block content %}
 
-<h1>{% print("Welcome, " + user.company_name + "!" )%}</h1>
-</br>
-<a id="create_post" href="/create_post" >Create a job posting.</a><br>
-<a id="my_posts" href="/myposts"> My Job Postings</a><br>
-<a id = "editinfo" href="/editinfo/{{user.id}}">Edit information</a>
-<h2>Your Information</h2>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/employer_home.css') }}">
+    <h1 style="margin-bottom: 3%;">{% print("Welcome, " + user.company_name + "!" )%}</h1>
+  </head>
+
+
+
+<div class="row item1">
+    <div class="col-md">
+
+        <div class="card" style="width: 15rem;">
+            <div class="card-header">
+            <image src="{{url_for('static', filename='images/edit-profile-icon.png')}}" class="card-img-top" alt="imagenotworking">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Edit profile</h5>
+              <p class="card-text">Change your profile information here.</p>
+              <a id = "editinfo" href="/editinfo/{{user.id}}" class="btn btn-outline-success">Start</a>
+              
+            </div>
+          </div>
+
+    </div>
+
+    <div class="col-md">
+
+        <div class="card" style="width: 15rem;">
+            <div class="card-header">
+            <image src="{{url_for('static', filename='images/my-job-icon.png')}}" class="card-img-top" alt="imagenotworking">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">New job posting</h5>
+              <p class="card-text">Create a new job posting to find the perfect candidate.</p>
+              <a id="create_post" href="/create_post" class="btn btn-outline-success">Start</a>
+            </div>
+          </div>
+
+    </div>
+
+    <div class="col-md">
+
+        <div class="card" style="width: 15rem;">
+            <div class="card-header">
+            <image src="{{url_for('static', filename='images/my-postings-icon.png')}}" class="card-img-top" alt="imagenotworking">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">My job postings</h5>
+              <p class="card-text">View and edit your job postings here.</p>
+              <a id="my_posts" href="/myposts" class="btn btn-outline-success"> Start</a>
+            </div>
+          </div>
+
+    </div>
+
+  </div>
+
+<h2 style="margin-top: 3%;">Your Information</h2>
 {% print("Phone number: " + user.phone_number) %} </br>
 {% print("Email address: " + user.email) %}
 {% endblock %}
