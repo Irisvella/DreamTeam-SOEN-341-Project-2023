@@ -1,31 +1,33 @@
-import unittest
-from website import create_app
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 '''
-class TestFlaskApp(unittest.TestCase):
+import unittest
+from flask import url_for
+from app import create_app, db
+from app.models.user import Post, User
+from sqlalchemy.sql import func
+
+
+class MainTestCase(unittest.TestCase):
+
     def setUp(self):
         self.app = create_app()
         self.client = self.app.test_client()
-        self.client.testing = True
-    
-    def test_flask_app(self):
-        # Test that the Flask app is created successfully and returns a valid Flask instance
-        self.assertIsInstance(self.app, Flask)
+        with self.app.app_context():
+            db.create_all()
+            user = User(id='30', last_name='dsd', company_name='sad', phone_number='23432', resume_file='sfsdfd'.encode(), profile='fdfd', first_name='testuser', email='tfj@example.com', password='password')
+            db.session.add(user)
+            db.session.commit()
+            post = Post(title='Test Post', text='This is a test post', company='test', address='234235', salary='3534', field='sdfwd', date_created=func.now())
+            db.session.add(post)
+            db.session.commit()
 
-        # Test that the Flask app is running on the correct host and port
-        response = self.client.get('/')
+
+    def tearDown(self):
+        with self.app.app_context():
+            db.session.remove()
+            db.drop_all()
+
+    def test_home(self):
+        response = self.client.get(url_for('main.home'))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data, b'Hello, World!')
-
-        # Test that the Flask app returns the correct response for different URLs and HTTP methods
-        response = self.client.get('/about')
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'About Us', response.data)
-
-if __name__ == '__main__':
-    unittest.main()
+        self.assertIn(b'Test Post', response.data)
 '''

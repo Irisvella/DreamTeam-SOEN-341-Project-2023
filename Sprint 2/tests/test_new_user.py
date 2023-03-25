@@ -1,4 +1,3 @@
-from website.models import User
 
 
 def test_new_user():

@@ -1,0 +1,44 @@
+<!-- THIS PAGE IS TO UPLOAD A RESUME BY PDF AND POSSIBLY READING AND APPENDING TO THE DATABASE THE ELEMENTS -->
+
+{% extends "base.html" %}
+{% block title %}Resume{% endblock %}  <!-- override the template to name the page-->
+
+{% block content %}
+<div class="container">
+  <h1>Resume</h1>
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Upload Resume</h2>
+      <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="resume">Select file:</label>
+          <input type="file" name="resume" id="resume">
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+    </div>
+    <div class="col-sm-6">
+      {% if current_user.resume_file %}
+        <h2>Resume Preview</h2>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resume-modal">View Resume</button>
+        <!-- Modal -->
+        <div class="modal fade" id="resume-modal" tabindex="-1" role="dialog" aria-labelledby="resume-modal-label" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="resume-modal-label">Resume Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <iframe src="{{ url_for('main.download_resume') }}" width="100%" height="500px"></iframe>
+            </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
