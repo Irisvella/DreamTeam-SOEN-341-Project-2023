@@ -3,6 +3,7 @@
   text-decoration: none;
   padding: 0;
   list-style: none;
+  overflow-x: hidden;
 }
 
 a:hover i {
@@ -73,3 +74,460 @@ input:focus + datalist {
 :root {
 	font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
 }
+
+
+/*---------------------
+  Hero
+-----------------------*/
+
+.first-section{
+  padding-top: 100px;
+  background: linear-gradient(181.5deg, rgba(240,249,248,0.3) 50%, rgba(240,249,248,1) 80%);
+     
+
+}
+
+h1{
+  font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 64px;
+    letter-spacing: .02em;
+    line-height: 60pt;
+}
+
+.card {
+  transition: 0.2s ease;
+  border: 0;
+  position: relative;width: 100%;padding-right: 15px;padding-left: 15px
+}
+
+.card-icon {
+  background: #FF0043;
+  color: #fff;
+  height: 55px;
+  width: 60px;
+  line-height: 55px;
+  text-align: center;
+  font-size: 27px;
+  display: block;
+  margin-top: 40px;
+}
+.card-text {
+  margin-bottom: 0;
+}
+
+.card-title {
+  font-weight: 700;
+}
+.card-body {
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 25px;
+  padding-bottom: 30px;
+  padding: 60px;
+  border-radius: 10px;
+  background-color: #fff;transition: all .4s ease-in-out;
+  box-shadow: 0 0 25px 0 rgba(20,27,202,.17)}
+
+  
+   .card-body:hover {
+    background-color: #E45F6F;
+    color: #fff;
+  }
+  
+
+.rounded, .card-icon, .card {
+  border-radius: 12px !important;
+}
+
+
+
+/***/
+.topic{
+  padding-top: 100px;
+}
+.mb-4{
+  opacity: 0;
+  transition:all 1s;
+  filter: blur(2px);
+  transform: translateX(0);
+}
+.show{
+  opacity:1;
+  filter: blur(0);
+ 
+}
+
+.second-section{
+  padding-top: 100px;
+}
+
+.job-seeker-section{
+  padding-top: 100px;
+}
+
+/*signin login button **/
+
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 200px;
+  height: 45px;
+  font: size 12px;px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.button:hover {
+  background-color: #5FE4D4;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+
+/**divider***/
+.custom-shape-divider-top-1679610980 {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  padding-bottom: 500px;
+}
+
+.custom-shape-divider-top-1679610980 svg {
+  position: relative;
+  display: block;
+  width: calc(105% + 1.3px);
+  height: 143px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1679610980 .shape-fill {
+  fill: #F0F9F8;
+}
+
+.custom-shape-divider-bottom-1679610837 .shape-fill {
+  fill: #F0F9F8;
+}
+
+
+/**PARALLAX EFFECT**/
+
+.wrapper {
+  
+  margin-top: 100px;
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+  overflow-x: auto;
+  perspective: 10px;
+}
+
+.heada {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  transform-style: preserve-3d;
+  z-index: -1;
+}
+
+
+.foreground {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.peffect {
+  padding: 2rem;
+  background-color: #EEF4F7;
+  color: black;
+}
+
+/****PROCESS SECTION ***/
+
+.process {
+  margin-top: 50px;
+  padding-top: 100px;
+  
+}
+
+.icon-block {
+  padding: 50px 40px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 40px 0px rgba(85, 128, 255, 0.2);
+}
+.icon-block i {
+  font-size: 35px;
+  background: rgba(239, 50, 58, 0.08);
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  padding-top: 16px;
+  border-radius: 10px;
+  display: inline-block;
+  color: #FF715B;
+}
+.icon-block h5 {
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+.icon-block p {
+  margin-bottom: 0px;
+}
+
+
+
+*{box-sizing: border-box;margin: 0;padding: 0}
+
+
+.settings:hover{box-shadow: 0 0 25px 0 rgba(20,27,201,.05);cursor: pointer;background-image: linear-gradient(-45deg, #34b5bf 0%, #210c59 100%)}
+.privacy:hover{box-shadow: 0 0 25px 0 rgba(20,27,201,.05);cursor: pointer;background-image: linear-gradient(-45deg, #3615e7 0%, #44a2f6 100%)}
+.backups:hover{box-shadow: 0 0 25px 0 rgba(20,27,201,.05);cursor: pointer;background-image: linear-gradient(-45deg, #fc6a0e 0%, #fdb642 100%)}
+.ssl:hover{box-shadow: 0 0 25px 0 rgba(20,27,201,.05);cursor: pointer;background-image: linear-gradient(-45deg, #8d40fb 0%, #5a57fb 100%)}
+.database:hover{box-shadow: 0 0 25px 0 rgba(20,27,201,.05);cursor: pointer;background-image: linear-gradient(-45deg, #27b88d 0%, #22dd73 100%)}
+
+
+
+
+
+/**PARALLAX EFFECT*/
+.parallax {
+  
+ /* The image used 
+  background-image: url("images/hero-1.jpg");
+ Set a specific height 
+  min-height: 500px; 
+  
+   Create the parallax scrolling effect 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+*/
+
+
+
+
+
+/*******
+About us page 
+*********/
+
+.feature-list ul li {
+  margin-bottom: 15px;
+  color: #111;
+}
+.feature-list ul li i {
+  color: #FF715B;
+}
+
+.video-img {
+  position: relative;
+}
+.video-img .video-play {
+  position: absolute;
+  content: "";
+  left: 0px;
+  right: 0px;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: -50px;
+  text-align: center;
+}
+.video-img .video-play i {
+  font-size: 30px;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  color: #FF715B;
+  border-radius: 100%;
+  text-align: center;
+  display: inline-block;
+  padding-top: 32px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.04);
+}
+
+.award-img-block {
+  height: 160px;
+  border: 1px solid #eee;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+}
+
+.video-play:hover {
+  cursor: pointer;
+}
+
+.feature {
+  background: linear-gradient(to bottom, #05a5f9, #10dab7);
+}
+
+.feature-block {
+  background: #fff;
+  padding: 30px;
+  text-align: center;
+}
+.feature-block i {
+  font-size: 40px;
+}
+.feature-block h5 {
+  margin-top: 20px;
+}
+
+.text-lg {
+  font-size: 50px;
+}
+
+.counter {
+  background: #FF715B;
+}
+.counter .counter-item h2 {
+  color: #fff;
+}
+.counter .counter-item p {
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0px;
+}
+
+.counter--style i {
+  font-size: 40px;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  color: #fafafa;
+  background: #FF715B;
+  display: inline-block;
+  padding-top: 28px;
+}
+
+/* Testimonial section***/
+
+.testimonials-clean {
+  margin-top: 100px;
+  color:#313437;
+  background-color:red;
+}
+
+.testimonials-clean p {
+  color:#7d8285;
+}
+
+.testimonials-clean h2 {
+  font-weight:bold;
+  margin-bottom:40px;
+  padding-top:40px;
+  color:inherit;
+}
+
+@media (max-width:767px) {
+  .testimonials-clean h2 {
+    margin-bottom:25px;
+    padding-top:25px;
+    font-size:24px;
+  }
+}
+
+.testimonials-clean .intro {
+  font-size:16px;
+  max-width:500px;
+  margin:0 auto;
+}
+
+.testimonials-clean .intro p {
+  margin-bottom:0;
+}
+
+.testimonials-clean .people {
+  padding:50px 0 20px;
+}
+
+.testimonials-clean .element {
+  margin-bottom:32px;
+}
+
+@media (min-width:768px) {
+  .testimonials-clean .element {
+    height:220px;
+  }
+}
+
+.testimonials-clean .element .box {
+  padding:30px;
+  background-color:#fff;
+  position:relative;
+}
+
+.testimonials-clean .element .box:after {
+  content:'';
+  position:absolute;
+  left:30px;
+  bottom:-24px;
+  width:0;
+  height:0;
+  border:15px solid transparent;
+  border-width:12px 15px;
+  border-top-color:#fff;
+}
+
+.testimonials-clean .element .author {
+  margin-top:28px;
+  padding-left:25px;
+}
+
+.testimonials-clean .element .name {
+  font-weight:bold;
+  margin-bottom:2px;
+  color:inherit;
+}
+
+.testimonials-clean .element .title {
+  font-size:13px;
+  color:#9da9ae;
+}
+
+.testimonials-clean .element .description {
+  font-size:15px;
+  margin-bottom:0;
+}
+
+.testimonials-clean .element img {
+  max-width:40px;
+  float:left;
+  margin-right:12px;
+  margin-top:-5px;
+}
+
+/****footer *****/
+.footText{
+  color: #ffffff;
+  background-color: #F0F9F8;
+}
+

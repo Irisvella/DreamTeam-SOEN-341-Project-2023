@@ -9,9 +9,12 @@
         <!--This is the link for all icons in the website -->
         <link rel="stylesheet" href="https://kit.fontawesome.com/3c22080b59.css" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jobpostings.css') }}">
+
         <link href='https://unpkg.com/css.gg@2.0.0/icons/css/bell.css' rel='stylesheet'>
         <link href='https://unpkg.com/css.gg@2.0.0/icons/css/profile.css' rel='stylesheet'>
-
+        <script src="https://kit.fontawesome.com/3c22080b59.js" crossorigin="anonymous"></script>
+        
     <title>{% block title %}Title Page{% endblock %}</title>
     </head>
     <body>
@@ -47,7 +50,7 @@
                   Discover
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" id="about" href="/about" >About us </a>
+                  <a class="dropdown-item" class="" id="about" href="/about" >About us </a>
                   <a class="dropdown-item" id="contact" href="/contact">Contact Us</a>
               </li> 
 
@@ -140,35 +143,16 @@
         {% endif %}
         {% endwith %}
 
-        <div class="container">
+        
             {% block content %}
             {% endblock %}
-        </div>
+        
 
         
  <!--This is the footer template -->
         
 <footer class="text-center text-lg-start bg-white text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-
-    <!-- Right -->
-    <div>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
+  
   <!-- Section: Social media -->
 
   <!-- Section: Links  -->
