@@ -3,7 +3,7 @@
   text-decoration: none;
   padding: 0;
   list-style: none;
-  overflow-x: hidden;
+ 
 }
 
 a:hover i {
@@ -95,7 +95,8 @@ h1{
     line-height: 60pt;
 }
 
-.card {
+.carte {
+  box-shadow: 10px 10px 5px lightblue;
   transition: 0.2s ease;
   border: 0;
   position: relative;width: 100%;padding-right: 15px;padding-left: 15px
@@ -112,14 +113,14 @@ h1{
   display: block;
   margin-top: 40px;
 }
-.card-text {
+.carte-texte {
   margin-bottom: 0;
 }
 
-.card-title {
+.carte-titre {
   font-weight: 700;
 }
-.card-body {
+.carte-corps {
   margin-left: 50px;
   margin-right: 50px;
   padding: 25px;
@@ -130,13 +131,13 @@ h1{
   box-shadow: 0 0 25px 0 rgba(20,27,202,.17)}
 
   
-   .card-body:hover {
+   .carte-corps:hover {
     background-color: #E45F6F;
     color: #fff;
   }
   
 
-.rounded, .card-icon, .card {
+.rounded, .card-icon, .carte {
   border-radius: 12px !important;
 }
 
@@ -175,7 +176,7 @@ h1{
   justify-content: center;
 }
 
-.button {
+.learnmore {
   width: 200px;
   height: 45px;
   font: size 12px;px;
@@ -192,7 +193,7 @@ h1{
   outline: none;
   }
 
-.button:hover {
+.learnmore:hover {
   background-color: #5FE4D4;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
@@ -525,9 +526,4 @@ About us page
   margin-top:-5px;
 }
 
-/****footer *****/
-.footText{
-  color: #ffffff;
-  background-color: #F0F9F8;
-}
 
