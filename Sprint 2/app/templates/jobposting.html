@@ -90,7 +90,7 @@
   <div class="container" id="posts" style="padding-top:25px;" >
     {% if posts %}
     {% for post in posts %}
-    <div class=" card col-md-6 p-3 mb-2" style="height:25%;">
+    <div class=" card  p-3 mb-2" style="height:25%;">
       <div class=" card-body  d-flex justify-content-between align-items-center">
         <div class="card-title">{{ post.title }}<br>{% print("Company: " + post.user.company_name) %}</div>
         <a href="/posts/{{ post.user.username }}">{{ post.user.username }}</a>
