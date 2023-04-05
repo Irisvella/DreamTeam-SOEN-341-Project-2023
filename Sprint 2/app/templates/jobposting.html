@@ -40,10 +40,12 @@
             {% if has_applied %}
               <button class="button" disabled>Applied</button>
             {% else %}
-            <form method="POST" action="{{ url_for('main.apply_post', id=post.id) }}" enctype="multipart/form-data">
+            <i class="material-icons">upload</i>        
+              <form method="POST" action="{{ url_for('main.apply_post', id=post.id) }}" enctype="multipart/form-data">
                 <input type="file" name="resume_file" required>
                 <button class="button" type="submit">Apply</button>
               </form>
+              
           {% endif %}
   </div>
         {% endif %}
