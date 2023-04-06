@@ -133,7 +133,7 @@ def delete_post(id):
         db.session.commit()
         flash('Post deleted', category='success')
 
-    return redirect (url_for('main.home'), user=current_user)
+    return redirect (url_for('main.home', user=current_user))
 
 @main.route("/apply-post/<id>", methods=['GET', 'POST'])
 @login_required
