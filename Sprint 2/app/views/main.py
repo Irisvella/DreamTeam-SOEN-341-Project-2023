@@ -166,7 +166,7 @@ def apply_post(id):
         db.session.commit()
 
         flash('Your application has been submitted.')
-        return redirect(url_for('main.admin_home', notification=notification, post=post, user=current_user))
+        return redirect(url_for('main.seeker_home', notification=notification, post=post, user=current_user))
     return render_template('apply_post.html', post=post, notification=notification, user=current_user)
 
 @login_required
