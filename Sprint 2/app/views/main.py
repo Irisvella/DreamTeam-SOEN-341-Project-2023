@@ -83,6 +83,7 @@ def jobposting():
     return render_template("jobposting.html", user=current_user, posts=posts)
 
 @main.route("/myposts", methods=['GET', 'POST'])
+@login_required
 def myposts():
     posts = Post.query.filter_by(author_id=current_user.id).all()
     print(posts)

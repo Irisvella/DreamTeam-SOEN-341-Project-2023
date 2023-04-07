@@ -69,11 +69,12 @@ def sign_up():
         password2 = request.form.get('password2')
 
         #checks if the email is already in use 
-        user = User.query.filter_by(email=email).first()
-        if user:
+        duplicate = User.query.filter_by(email=email).first()
+        if duplicate:
             flash('Email already exists', category='error')
 
-        if len(email) < 2:
+
+        elif len(email) < 2:
             flash('Email must be greater than 4 characters.', category='error') #flashes error message
         elif len(first_name) < 2:
             flash('First name must be greater than 4 characters.', category='error')
