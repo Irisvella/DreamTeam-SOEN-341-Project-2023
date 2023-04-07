@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="https://kit.fontawesome.com/3c22080b59.css" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jobpostings.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/themechange.css') }}">
+
 
         <link href='https://unpkg.com/css.gg@2.0.0/icons/css/bell.css' rel='stylesheet'>
         <link href='https://unpkg.com/css.gg@2.0.0/icons/css/profile.css' rel='stylesheet'>
@@ -19,7 +21,7 @@
     </head>
     <body>
        <!--This is the nav bar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg baredenaviagtion">
           <a class="navbar-brand " href="/">GOODJOB</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -115,6 +117,7 @@
               </li>
               {% endif %}
             </ul>
+            <img src="{{ url_for('static', filename='images/moon.png') }}" id="themeIcon" alt="moon" >
           </div>
         </nav>
   

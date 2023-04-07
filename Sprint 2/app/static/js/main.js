@@ -47,3 +47,31 @@ const observer = new IntersectionObserver((entries)=>{
 const dynamicText = document.querySelectorAll('.mb-4');
 dynamicText.forEach((el)=> observer.observe(el));
 
+/****dark theme */
+
+var themeIcon = document.getElementById("themeIcon");
+
+themeIcon.onclick = function() {
+  document.body.classList.toggle("dark-theme");
+  if (document.body.classList.contains("dark-theme")) {
+    themeIcon.textContent = "Light Theme";
+  } else {
+    themeIcon.textContent = "Dark Theme";
+  }
+}
+
+
+
+var themeIcon = document.getElementById("themeIcon");
+
+themeIcon.onclick = function(){
+  document.body.classList.toggle("dark-theme");
+    if(document.body.classList.contains("dark-theme")){
+      themeIcon.src = "images/sun.png";
+    }
+    else{
+      themeIcon.src = "images/moon.png";
+    }
+  }
+
+

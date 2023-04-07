@@ -5,10 +5,55 @@
   list-style: none;
  
 }
+:root {
+  
+  --primary-color: linear-gradient(160deg, #B0F2B4, #BAF2E9, #F4F6F9);
+  --secondary-color: #F8F9FA;
+  
+  --body-fonts: "Helvetica", "Arial", sans-serif;
+  --line-height: 1.5;
+  --text-color: var(--white);
+  --background-size: 400% 400%;   
+	font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
+}
+
+svg {
+  font-family: var(--body-fonts);
+}
+
+svg circle {
+  fill: var(--primary-color);
+}
+
+
+
+
+/***navbar */
+.baredenaviagtion{
+ 
+    background: var(--primary-color);
+    background-size: 600% 600%;
+    animation: GradientAnimation 8s ease infinite;
+    }
+    
+    @keyframes GradientAnimation {
+    0%{background-position: 0% 23%}
+    50%{background-position: 100% 77%}
+    100%{background-position:0% 23%}
+    
+}
+
+
+a {
+  color:#fff;
+  text-decoration: none;
+}
+
+
 
 a:hover i {
   transform: scale(1.2);
-  color: blue;  
+  color: rgb(244, 244, 246);  
 }
 
 .link {
@@ -71,20 +116,25 @@ input:focus + datalist {
 }
 
 
-:root {
-	font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
-}
-
 
 /*---------------------
   Hero
+  background:linear-gradient(181.5deg, rgba(240,249,248,0.3) 50%, rgba(240,249,248,1) 80%);
 -----------------------*/
 
 .first-section{
-  padding-top: 100px;
-  background: linear-gradient(181.5deg, rgba(240,249,248,0.3) 50%, rgba(240,249,248,1) 80%);
-     
-
+    padding-top: 100px;
+    background: var(--primary-color);
+    background-size: 600% 600%;
+    animation: GradientAnimation 8s ease infinite;
+    }
+    
+    @keyframes GradientAnimation {
+    0%{background-position: 0% 23%}
+    50%{background-position: 100% 77%}
+    100%{background-position:0% 23%}
+    
+  
 }
 
 h1{
@@ -202,16 +252,21 @@ h1{
 
 
 /**divider***/
+.divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  padding-bottom: 100px;
+}
 .custom-shape-divider-top-1679610980 {
-  position: absolute;
+ 
   width: 100%;
   overflow: hidden;
   line-height: 0;
   padding-bottom: 500px;
 }
-
 .custom-shape-divider-top-1679610980 svg {
-  position: relative;
+ 
   display: block;
   width: calc(105% + 1.3px);
   height: 143px;
@@ -220,10 +275,12 @@ h1{
 
 .custom-shape-divider-top-1679610980 .shape-fill {
   fill: #F0F9F8;
+
+
 }
 
 .custom-shape-divider-bottom-1679610837 .shape-fill {
-  fill: #F0F9F8;
+  fill:lin #B0F2B4, #BAF2E9, #F4F6F9);
 }
 
 

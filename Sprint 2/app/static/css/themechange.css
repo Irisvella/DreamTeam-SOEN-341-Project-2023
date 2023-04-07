@@ -1,0 +1,49 @@
+  /* Changes in the whole background */
+  
+    body.dark-theme {
+        background:var(--secondary-color);
+        color: white;
+
+    }
+
+    #themeIcon{
+  width: 30px;
+  cursor: pointer;
+}
+
+.dark-theme{
+ --primary-color:linear-gradient(90deg,#0c1c2e,#122f50,#25587c);
+ --secondary-color:#F8F9FA;
+}
+
+
+    body.baredenaviagtion{
+        color: #fff;
+    }
+
+  
+/*
+  .dark-theme .section {
+    background-color: #222;
+    color: #fff;
+  }
+  
+*/
+
+#themeIcon{
+    width: 30px;
+    cursor: pointer;
+}
+
+
+
+/* --color: var(--white);
+    --shadow_exists: var(--shadow_true);
+    --text-color: var(--gray);
+    --background: linear-gradient(90deg,#ff5f6d,#ff8657,#e2911f);
+    --background-size: 400% 400%;
+    .light  {
+   background-color:  linear-gradient(221deg, #B0F2B4, #BAF2E9, #FBEECA);
+    background-size: 600% 600%;
+    animation: GradientAnimation 22s ease infinite;
+}
