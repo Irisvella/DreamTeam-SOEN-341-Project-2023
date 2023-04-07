@@ -1,24 +1,16 @@
   /* Changes in the whole background */
   
-    body.dark-theme {
-        background:var(--secondary-color);
-        color: white;
-
-    }
+ 
 
     #themeIcon{
-  width: 30px;
-  cursor: pointer;
+    width: 30px;
+    cursor: pointer;
 }
 
-.dark-theme{
- --primary-color:linear-gradient(90deg,#0c1c2e,#122f50,#25587c);
- --secondary-color:#F8F9FA;
-}
-
-
-    body.baredenaviagtion{
-        color: #fff;
+    .dark-theme{
+    
+    --primary-color:linear-gradient(90deg,#0c1c2e,#122f50,#25587c);
+    --secondary-color:#F8F9FA;
     }
 
   

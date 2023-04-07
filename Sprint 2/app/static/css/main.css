@@ -148,7 +148,6 @@ h1{
 .carte {
   box-shadow: 10px 10px 5px lightblue;
   transition: 0.2s ease;
-  border: 0;
   position: relative;width: 100%;padding-right: 15px;padding-left: 15px
 }
 
@@ -182,8 +181,8 @@ h1{
 
   
    .carte-corps:hover {
-    background-color: #E45F6F;
-    color: #fff;
+    background: var(--primary-color);
+    
   }
   
 
@@ -210,6 +209,7 @@ h1{
 }
 
 .second-section{
+ 
   padding-top: 100px;
 }
 
@@ -330,22 +330,21 @@ h1{
 }
 
 .icon-block {
-  padding: 50px 40px;
+  display: auto;
+  padding:  40px;;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0px 0px 40px 0px rgba(85, 128, 255, 0.2);
+
 }
+
 .icon-block i {
+  display: auto;
   font-size: 35px;
-  background: rgba(239, 50, 58, 0.08);
-  width: 70px;
-  height: 70px;
-  text-align: center;
-  padding-top: 16px;
   border-radius: 10px;
-  display: inline-block;
-  color: #FF715B;
+  color: #B5F2CB;
 }
+
 .icon-block h5 {
   margin-top: 25px;
   margin-bottom: 15px;
@@ -584,3 +583,6 @@ About us page
 }
 
 
+.foot{
+  background: var(--primary-color);
+}
