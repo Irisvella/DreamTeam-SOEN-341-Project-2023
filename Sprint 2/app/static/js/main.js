@@ -49,17 +49,12 @@ dynamicText.forEach((el)=> observer.observe(el));
 
 /****dark theme */
 
-var themeIcon = document.getElementById("themeIcon");
-
-themeIcon.onclick = function() {
-  document.body.classList.toggle("dark-theme");
-  if (document.body.classList.contains("dark-theme")) {
-    themeIcon.textContent = "Light Theme";
-  } else {
-    themeIcon.textContent = "Dark Theme";
-  }
+function toggleDarkMode() {
+  var body = document.body;
+  body.classList.toggle("dark-mode");
+  var isDarkMode = body.classList.contains("dark-mode");
+  localStorage.setItem("isDarkMode", isDarkMode);
 }
-
 
 
 var themeIcon = document.getElementById("themeIcon");
