@@ -47,6 +47,7 @@ const observer = new IntersectionObserver((entries)=>{
 const dynamicText = document.querySelectorAll('.mb-4');
 dynamicText.forEach((el)=> observer.observe(el));
 
+
 /****dark theme */
 
 function toggleDarkMode() {
@@ -59,14 +60,19 @@ function toggleDarkMode() {
 
 var themeIcon = document.getElementById("themeIcon");
 
+
 themeIcon.onclick = function(){
   document.body.classList.toggle("dark-theme");
-    if(document.body.classList.contains("dark-theme")){
-      themeIcon.src = "images/sun.png";
-    }
-    else{
-      themeIcon.src = "images/moon.png";
+  if(document.body.classList.contains("dark-theme")){
+    if(themeIcon.src.includes("sun.png")){
+      themeIcon.src = "{{ url_for('static', filename='images/moon.png') }}";
+      themeIcon.style.filter = "invert(1)";
     }
   }
-
-
+  else{
+    if(themeIcon.src.includes("moon.png")){
+      themeIcon.src = "{{ url_for('static', filename='images/sun.png') }}";
+      themeIcon.style.filter = "none";
+    }
+  }
+}

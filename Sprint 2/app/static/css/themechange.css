@@ -2,10 +2,12 @@
     .dark-theme{
     --primary-color:linear-gradient(90deg,#0c1c2e,#122f50,#25587c);
     --secondary-color:#F8F9FA;
+    --color-primary:black;
+    --color-secondary:white
     
   
     }
-
+   
     
     .dark-theme .carte-corps {
       margin-left: 50px;
