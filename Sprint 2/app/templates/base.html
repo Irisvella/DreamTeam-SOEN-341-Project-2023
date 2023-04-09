@@ -64,6 +64,13 @@
                 <a class="nav-link" id="seeker_home" href="/seeker_home">Profile</a>
               </li>
               {%endif%}
+
+              {%if user and user.is_authenticated and user.profile == 'admin'%}
+              <li class="nav-item  mr-4">
+                <a class="nav-link" id="admin_home" href="/admin_home">Profile</a>
+              </li>
+              {%endif%}
+
               
 
               {%if user and user.is_authenticated and (user.profile == 'seeker' or user.profile == 'employer') %}
