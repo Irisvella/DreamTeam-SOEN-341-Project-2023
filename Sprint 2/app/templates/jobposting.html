@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Job Posting{% endblock %}
+
+{% block content %}
+  <br>
+  <form method="POST">
+    <label for="what">What:</label>
+      <input type="text" name="what" id="what" autocomplete="off" list="what-list">
+      <datalist id="what-list">
+        {% for post in posts %}
+        <option value="{{ post.title }}">
+        {% endfor %}
+      </datalist>
+      <label for="where">Where:</label>
+      <input type="text" name="where" id="where" autocomplete="off" list="where-list">
+      <datalist id="where-list">
+        {% for post in posts %}
+        <option value="{{ post.address }}">
+        {% endfor %}
+      </datalist>
+    <button type="submit" formaction="{{ url_for('main.search') }}">Search</button>
+  </form>
+  <div id="posts">
+    {% if posts %}
+    {% for post in posts %}
+    <div class="card border-dark">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-title">{{ post.title }}<br>{% print("Company: " + post.user.company_name) %}</div>
+        <a href="/posts/{{ post.user.username }}">{{ post.user.username }}</a>
+        {% if current_user.profile == "admin" %}
+        <a href="/delete-post/{{ post.id }}" class="button">Delete</a>
+        <a href="/editpost/{{post.id}}" class="button">Edit</a>
+        {%endif%}
+        {% if current_user.id == post.author_id %}
+          <div class="btn-group">
+            <button type="button" class="button"></button>
+            <a href="/delete-post/{{ post.id }}" class="button">Delete</a>
+          </div>
+          {% else %}
+          {% set has_applied = current_user in post.applicants %}
+          <div class="btn-group">
+            <button type="button" class="button"></button>
+            {% if has_applied %}
+              <button class="button" disabled>Applied</button>
+            {% else %}
+            <form method="POST" action="{{ url_for('main.apply_post', id=post.id) }}" enctype="multipart/form-data">
+                <input type="file" name="resume_file" required>
+                <button class="button" type="submit">Apply</button>
+              </form>
+          {% endif %}
+  </div>
+        {% endif %}
+      </div>
+      <div class="card-body">
+        <div class="card-text">{{ post.text }}</div>
+      </div>
+      <div class="card-footer text-muted">{{ post.date_created }}</div>
+    </div>
+    <br>
+    {% endfor %}
+    {% else %}
+    <p>No job postings found.</p>
+    {% endif %}
+  </div>
+{% endblock %}
