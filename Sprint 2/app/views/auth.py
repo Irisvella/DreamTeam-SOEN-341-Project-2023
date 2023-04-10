@@ -105,7 +105,7 @@ def signup_employer():
         if user:
             flash('Email already exists', category='error')
 
-        if len(email) < 2:
+        elif len(email) < 2:
             flash('Email must be greater than 4 characters.', category='error') #flashes error message
         elif password1 != password2:
             flash('Passwords must match.', category='error')
@@ -124,7 +124,8 @@ def signup_employer():
 def signup_admin():
     if request.method == 'POST': 
         email = request.form.get('email')
-        company_name = request.form.get('company_name')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
         phone_number = request.form.get('phone_number')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
@@ -134,15 +135,14 @@ def signup_admin():
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists', category='error')
-
-        if len(email) < 2:
+        elif len(email) < 2:
             flash('Email must be greater than 4 characters.', category='error') #flashes error message
         elif password1 != password2:
             flash('Passwords must match.', category='error')
         elif len(password1) < 1:
             flash('Password must be greater than 6 characters.', category='error')
         elif secret == 'temporary':
-            user = User(profile="admin",email=email, company_name=company_name, phone_number = phone_number, password=generate_password_hash(password1, method='sha256'))
+            user = User(profile="admin",email=email, first_name=first_name, last_name=last_name, phone_number = phone_number, password=generate_password_hash(password1, method='sha256'))
             db.session.add(user)
             db.session.commit()
             login_user(user, remember=True) #from flask_login, remembers that the user is logged in. Stored in session. 

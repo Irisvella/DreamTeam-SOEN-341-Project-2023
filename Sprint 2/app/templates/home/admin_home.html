@@ -5,4 +5,8 @@
 
 {% block content %}
     <h1 style="justify: center;">Admin page</h1>
+    <h2>{% print("Welcome, " + user.first_name + " " + user.last_name + "!" )%}</h2>
+    <h2>You can edit and delete all job postings.</h2>
+    <a id = "getworking" href="/jobposting"><button type="button" class="btn btn-outline-primary" style="margin-top: 3%;">View Job Posts</button></a>
+
 {% endblock %}
