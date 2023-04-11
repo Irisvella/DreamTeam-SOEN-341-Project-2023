@@ -1,0 +1,59 @@
+  /*Here is the root of dark theme */
+    .dark-theme{
+    --primary-color:linear-gradient(90deg,#0c1c2e,#122f50,#25587c);
+    --secondary-color:#F8F9FA;
+    --color-primary:black;
+    --color-secondary:white
+    
+  
+    }
+   
+    
+    .dark-theme .carte-corps {
+      margin-left: 50px;
+      margin-right: 50px;
+      padding: 25px;
+      padding-bottom: 30px;
+      padding: 60px;
+      border-radius: 10px;
+      background-color: #fff;transition: all .4s ease-in-out;
+      box-shadow: 0 0 25px 0 rgba(20,27,202,.17)}
+     
+      
+       .carte-corps:hover {
+        background: var(--primary-color);
+        color: #fff;
+        
+      }
+
+     .dark-theme h1 p{
+      color:var(--secondary-color)
+     }
+      
+
+
+/*
+  .dark-theme .section {
+    background-color: #222;
+    color: #fff;
+  }
+  
+*/
+
+#themeIcon{
+    width: 30px;
+    cursor: pointer;
+}
+
+
+
+/* --color: var(--white);
+    --shadow_exists: var(--shadow_true);
+    --text-color: var(--gray);
+    --background: linear-gradient(90deg,#ff5f6d,#ff8657,#e2911f);
+    --background-size: 400% 400%;
+    .light  {
+   background-color:  linear-gradient(221deg, #B0F2B4, #BAF2E9, #FBEECA);
+    background-size: 600% 600%;
+    animation: GradientAnimation 22s ease infinite;
+}

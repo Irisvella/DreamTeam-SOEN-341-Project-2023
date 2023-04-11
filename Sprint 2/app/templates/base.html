@@ -9,14 +9,24 @@
         <!--This is the link for all icons in the website -->
         <link rel="stylesheet" href="https://kit.fontawesome.com/3c22080b59.css" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jobpostings.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/themechange.css') }}">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" 
+        rel="stylesheet">
+
+
         <link href='https://unpkg.com/css.gg@2.0.0/icons/css/bell.css' rel='stylesheet'>
         <link href='https://unpkg.com/css.gg@2.0.0/icons/css/profile.css' rel='stylesheet'>
-
+        <script src="https://kit.fontawesome.com/3c22080b59.js" crossorigin="anonymous"></script>
+        
     <title>{% block title %}Title Page{% endblock %}</title>
     </head>
     <body>
        <!--This is the nav bar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg baredenaviagtion">
           <a class="navbar-brand " href="/">GOODJOB</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,7 +57,7 @@
                   Discover
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" id="about" href="/about" >About us </a>
+                  <a class="dropdown-item" class="" id="about" href="/about" >About us </a>
                   <a class="dropdown-item" id="contact" href="/contact">Contact Us</a>
               </li> 
 
@@ -112,6 +122,7 @@
               </li>
               {% endif %}
             </ul>
+            <img src="{{ url_for('static', filename='images/moon.png') }}" id="themeIcon" alt="moon" >
           </div>
         </nav>
   
@@ -140,47 +151,21 @@
         {% endif %}
         {% endwith %}
 
-        <div class="container">
+        
             {% block content %}
             {% endblock %}
-        </div>
+        
 
         
  <!--This is the footer template -->
         
-<footer class="text-center text-lg-start bg-white text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-
-    <!-- Right -->
-    <div>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
-
-  <!-- Section: Links  -->
-  <section class="">
+<div class="foot"  >
+  
+  
     <div class="container text-center text-md-start mt-5">
       <!-- Grid row -->
       <div class="row mt-3">
-        <!-- Grid column -->
-        
-        <!-- Grid column -->
-
-        <!-- Grid column -->
+       
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
@@ -228,14 +213,14 @@
       </div>
       <!-- Grid row -->
     </div>
-  </section>
+  
   <!-- Section: Links  -->
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
     <a class="text-reset fw-bold" > © 2023 Copyright: DreamTeam</a>
   </div>
   <!-- Copyright -->
-</footer>
+</div>
 <!-- Footer -->
 
           
