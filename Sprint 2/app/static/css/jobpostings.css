@@ -1,115 +1,124 @@
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 
+form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
 
-.search {
-   
-   box-shadow:  0 0 40px rgba(51, 51, 51, .1);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    border-radius: 5px
-   
-  }
-  
-  .search-1 {
-    position: relative;
-    width: 100%
-    
-    
-  }
-  
-  .search-1 input {
-    height: 45px;
-    border: none;
-    width: 100%;
-    padding-left: 34px;
-    padding-right: 10px;
-    border-right: 2px solid #eee
-  }
-  
-  .search-1 input:focus {
-    border-color: none;
-    outline: none
-    border: 2px solid blue;
-  }
-  
-  .search-1 i {
-    position: absolute;
-    top: 12px;
-    left: 5px;
-    font-size: 24px;
-    color: #eee
-    
-  }
-  
-  ::placeholder {
-    color: #eee;
-    opacity: 1
-  }
-  
-  .search-2 {
-    position: relative;
-    width: 100%
-  }
-  
-  .search-2 input {
-    height: 45px;
-    border: none;
-    width: 100%;
-    padding-left: 18px;
-    padding-right: 100px
-  }
-  
-  .search-2 input:focus {
-    border-color: none;
-    box-shadow: none;
-    outline: none
-  }
-  
-  .search-2 i {
-    position: absolute;
-    top: 12px;
-    left: -10px;
-    font-size: 24px;
-    color: #eee
-  }
-  
-  .search-2 button {
-    position: absolute;
-   
-    border: none;
-    height: 45px;
-    background-color: #5FE4D4;
-    color: #fff;
-    width: 90px;
-    border-radius: 4px
-  }
-  
-  @media (max-width:800px) {
-    .search-1 input {
-        border-right: none;
-        border-bottom: 1px solid #eee
-    }
-  
-    .search-2 i {
-        left: 4px
-    }
-  
-    .search-2 input {
-        padding-left: 34px
-    }
-  
-    .search-2 button {
-        height: 37px;
-        top: 5px
-    }
-  }
+form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-  .recherche{
-    margin-top: 50px;
-    padding-top: 0;
-   
-  }
+/* Apply styles to the card elements */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
 
-  .contour{
-    padding-top: 100px;
-  }
-  
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.card-title a {
+  color: #000;
+  text-decoration: none;
+}
+
+.card-text {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.card-footer {
+  color: #888;
+  font-size: 14px;
+}
+
+/* search inputs changes */
+form input[type="text"]#what,
+form input[type="text"]#where {
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 10px;
+  margin-right: 10px;
+  width: calc(50% - 10px);
+  transition: all 0.3s ease;
+}
+
+form input[type="text"]#what:focus,
+form input[type="text"]#where:focus {
+  outline: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+form input[type="text"]#what::-webkit-input-placeholder,
+form input[type="text"]#where::-webkit-input-placeholder {
+  color: #999;
+}
+
+form input[type="text"]#what::-moz-placeholder,
+form input[type="text"]#where::-moz-placeholder {
+  color: #999;
+}
+
+form input[type="text"]#what:-ms-input-placeholder,
+form input[type="text"]#where:-ms-input-placeholder {
+  color: #999;
+}
+
+/* Icon and input file changes */
+
+input::file-selector-button {
+  background-color: #f2f2f2;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+}
+
+input::file-selector-button:hover { 
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+.material-icons {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -5px; 
+  margin-right: 5px; 
+}
