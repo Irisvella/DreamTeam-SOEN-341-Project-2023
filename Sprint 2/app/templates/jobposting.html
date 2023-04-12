@@ -6,29 +6,115 @@
  
 <style>
   
-  
-  body{
-   
-    overflow-x: hidden;
-    background: var(--primary-color);
-    color: var( --color-secondary);
-}
+ 
 
-  .file {
-    cursor: pointer;
-    background-color: #F0F9F8;
-    border-radius: 15px;
-    color: #000000;
+  /* Element changes */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-left: 15px;
+  }
+  
+  form button[type="submit"] {
+    background-color: #B2F2C0;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
     padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
   }
-  .file:hover{
-    background: var(--primary-color);
+  
+  /* Apply styles to the card elements */
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   }
-  #upload {
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
+
+  .card-title {
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
   }
+  
+  .card-title a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .card-text {
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+  .card-footer {
+    color: #888;
+    font-size: 14px;
+  }
+  
+  /* search inputs changes */
+  form input[type="text"]#what,
+  form input[type="text"]#where {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 10px;
+    margin-right: 10px;
+    width: calc(50% - 10px);
+    transition: all 0.3s ease;
+  }
+  
+  form input[type="text"]#what:focus,
+  form input[type="text"]#where:focus {
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  form input[type="text"]#what::-webkit-input-placeholder,
+  form input[type="text"]#where::-webkit-input-placeholder {
+    color: #999;
+  }
+  
+  form input[type="text"]#what::-moz-placeholder,
+  form input[type="text"]#where::-moz-placeholder {
+    color: #999;
+  }
+  
+  form input[type="text"]#what:-ms-input-placeholder,
+  form input[type="text"]#where:-ms-input-placeholder {
+    color: #999;
+  }
+  
+  /* Icon and input file changes */
+
+  input::file-selector-button {
+    background-color: #f2f2f2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  input::file-selector-button:hover { 
+    background-color: #e6e6e6;
+    cursor: pointer;
+  }
+
+
   .papacard{
     margin-top: 50px;
   }
@@ -86,7 +172,7 @@
           <div class="col-sm-6 ">
             <div class="card border border-secondary papacard " >
           <div class=" card p-3 mb-2" style="height:25%;">
-            <div class=" card-body d-flex justify-content-between align-items-center">
+            <div class="  card-deck card-body  d-flex justify-content-between align-items-center">
               <div class="card-title">{{ post.title }}<br>{% print("Company: " + post.user.company_name) %}</div>
               <a href="/posts/{{ post.user.username }}">{{ post.user.username }}</a>
               {% if current_user.id == post.author_id %}
@@ -96,26 +182,23 @@
                 </div>
                 {% else %}
                 {% set has_applied = current_user in post.applicants %}
-                <div class="btn-group"> <!--removing this for aesthetic reason might cause issues. It is below    <button type="button" class="button"></button> -->
-                
-                  {% if has_applied %}
-                    <button class="button" disabled>Applied</button>
-                  {% else %}
-                  <form method="POST" action="{{ url_for('main.apply_post', id=post.id) }}" enctype="multipart/form-data">
-                    <div><i class="fa-solid fa-upload"></i></div>
-                    <label for="upload" class="file"> Upload a file</label>
-                    <input type="file"  name="resume_file" id="upload" required><br>
-                      <button class="btn btn-dark" type="submit">Apply</button>
-                    </form>
-                    
-                  {% endif %}
-              </div>
-              {% endif %}
+          
+            {% if has_applied %}
+              <button class="button" disabled>Applied</button>
+            {% else %}      
+              <form method="POST" action="{{ url_for('main.apply_post', id=post.id) }}" enctype="multipart/form-data">
+                <input type="file" class="btn " name="resume_file" required>
+                <button class="btn btn btn-dark" type="submit">Apply</button>
+              </form>
+              
+          {% endif %}
+ 
+        {% endif %}
             </div>
               </div><!--end of col smtg to add 2 cards on the same line-->
       
-            <div class="card-body ">
-              <div class="card-text">{{ post.text }}</div>
+            <div class="card-body  ">
+              <div class="card-text ">{{ post.text }}</div>
             </div>
             <p class="card-footer text-muted">{{ post.date_created }}</p>
           </div>
