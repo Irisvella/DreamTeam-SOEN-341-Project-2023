@@ -118,14 +118,18 @@ form label {
   .papacard{
     margin-top: 50px;
   }
+
+  .search{
+    margin-top: 50px;
+  }
 </style>
 
 
 
   <form method="POST">
     <div class="container">
-    <div class="search recherche">
-      <div class="row">
+    <div class="search">
+      <div class="row shadow-lg p-3 mb-5 bg-white rounded">
 
         <div class="col-md-6">
 
@@ -166,7 +170,7 @@ form label {
 
 
         <div class="container" id="posts" style="padding-top:25px;" >
-          <div class="row">
+          <div class="row ">
           {% if posts %}
           {% for post in posts %}
           <div class="col-sm-6 ">
