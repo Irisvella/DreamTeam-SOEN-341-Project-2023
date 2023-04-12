@@ -3,61 +3,224 @@
 {% block title %}Job Posting{% endblock %}
 
 {% block content %}
-  <br>
+ 
+<style>
+  
+ 
+
+  /* Element changes */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-left: 15px;
+  }
+  
+  form button[type="submit"] {
+    background-color: #B2F2C0;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Apply styles to the card elements */
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-title {
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .card-title a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .card-text {
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+  .card-footer {
+    color: #888;
+    font-size: 14px;
+  }
+  
+  /* search inputs changes */
+  form input[type="text"]#what,
+  form input[type="text"]#where {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 10px;
+    margin-right: 10px;
+    width: calc(50% - 10px);
+    transition: all 0.3s ease;
+  }
+  
+  form input[type="text"]#what:focus,
+  form input[type="text"]#where:focus {
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  form input[type="text"]#what::-webkit-input-placeholder,
+  form input[type="text"]#where::-webkit-input-placeholder {
+    color: #999;
+  }
+  
+  form input[type="text"]#what::-moz-placeholder,
+  form input[type="text"]#where::-moz-placeholder {
+    color: #999;
+  }
+  
+  form input[type="text"]#what:-ms-input-placeholder,
+  form input[type="text"]#where:-ms-input-placeholder {
+    color: #999;
+  }
+  
+  /* Icon and input file changes */
+
+  input::file-selector-button {
+    background-color: #f2f2f2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  input::file-selector-button:hover { 
+    background-color: #e6e6e6;
+    cursor: pointer;
+  }
+
+
+  .papacard{
+    margin-top: 50px;
+  }
+
+  .search{
+    margin-top: 50px;
+  }
+</style>
+
+
+
   <form method="POST">
-    <label for="what">What:</label>
-      <input type="text" name="what" id="what" autocomplete="off" list="what-list">
+    <div class="container">
+    <div class="search">
+      <div class="row shadow-lg p-3 mb-5 bg-white rounded">
+
+        <div class="col-md-6">
+
+          <div class="search-1">
+            <label for="what"></label>
+            <input type="text" name="what" class="form-control" id="what" autocomplete="off" list="what-list" placeholder="What">
+          </div>
+
+        </div>
+
       <datalist id="what-list">
         {% for post in posts %}
         <option value="{{ post.title }}">
         {% endfor %}
       </datalist>
-      <label for="where">Where:</label>
-      <input type="text" name="where" id="where" autocomplete="off" list="where-list">
-      <datalist id="where-list">
-        {% for post in posts %}
-        <option value="{{ post.address }}">
-        {% endfor %}
-      </datalist>
-    <button type="submit" formaction="{{ url_for('main.search') }}">Search</button>
-  </form>
-  <div id="posts">
-    {% if posts %}
-    {% for post in posts %}
-    <div class="card border-dark">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <div class="card-title">{{ post.title }}<br>{% print("Company: " + post.user.company_name) %}</div>
-        <a href="/posts/{{ post.user.username }}">{{ post.user.username }}</a>
-        {% if current_user.id == post.author_id %}
-          <div class="btn-group">
-            <button type="button" class="button"></button>
-            <a href="/delete-post/{{ post.id }}" class="button">Delete</a>
-          </div>
-          {% else %}
-          {% set has_applied = current_user in post.applicants %}
-          <div class="btn-group">
-            <button type="button" class="button"></button>
+
+      <div class="col-md-6"> <div>
+          
+        <div class="search-2">
+        <label for="where"></label>
+        <input type="text" name="where"  id="where" autocomplete="off" list="where-list" placeholder="where">
+     
+        <datalist id="where-list">
+          {% for post in posts %}
+          <option value="{{ post.address }}">
+          {% endfor %}
+        </datalist>
+    
+         <button type="submit" class="btn btn-primary" formaction="{{ url_for('main.search') }}">Search</button>
+      </div> 
+    </div> 
+  </div>
+
+ </div>
+  </div> 
+  </div>
+ </form>
+
+
+        <div class="container" id="posts" style="padding-top:25px;" >
+          <div class="row ">
+          {% if posts %}
+          {% for post in posts %}
+          <div class="col-sm-6 ">
+            <div class="card border border-secondary papacard " >
+          <div class=" card p-3 mb-2" style="height:25%;">
+            <div class="  card-deck card-body  d-flex justify-content-between align-items-center">
+              <div class="card-title">{{ post.title }}<br>{% print("Company: " + post.user.company_name) %}</div>
+              <a href="/posts/{{ post.user.username }}">{{ post.user.username }}</a>
+              {% if current_user.profile == "admin" %}
+              <button type="button" class="button"></button>
+              <a href="/delete-post/{{ post.id }}" class="button">Delete</a>
+              <button type="button" class="button"></button>
+              <a href="/editpost/{{post.id}}" class="button">Edit</a>
+              {%endif%}
+              {% if current_user.id == post.author_id %}
+                <div class="btn-group">
+                  <button type="button" class="button"></button>
+                  <a href="/delete-post/{{ post.id }}" class="button">Delete</a>
+                </div>
+                {% else %}
+                {% set has_applied = current_user in post.applicants %}
+          
             {% if has_applied %}
               <button class="button" disabled>Applied</button>
-            {% else %}       
+            {% else %}      
               <form method="POST" action="{{ url_for('main.apply_post', id=post.id) }}" enctype="multipart/form-data">
-                <input type="file" name="resume_file" required>
-                <button class="button" type="submit">Apply</button>
+                <input type="file" class="btn " name="resume_file" required>
+                <button class="btn btn btn-dark" type="submit">Apply</button>
               </form>
               
           {% endif %}
-  </div>
+ 
         {% endif %}
-      </div>
-      <div class="card-body">
-        <div class="card-text">{{ post.text }}</div>
-      </div>
-      <div class="card-footer text-muted">{{ post.date_created }}</div>
-    </div>
-    <br>
+            </div>
+              </div><!--end of col smtg to add 2 cards on the same line-->
+      
+            <div class="card-body  ">
+              <div class="card-text ">{{ post.text }}</div>
+            </div>
+            <p class="card-footer text-muted">{{ post.date_created }}</p>
+          </div>
+          
+        </div>
     {% endfor %}
     {% else %}
     <p>No job postings found.</p>
     {% endif %}
   </div>
+</div>
+  </div>
+</div>
 {% endblock %}
+
