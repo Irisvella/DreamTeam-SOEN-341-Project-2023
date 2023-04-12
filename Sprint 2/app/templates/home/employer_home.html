@@ -6,7 +6,8 @@
 {% block content %}
 
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/employer_home.css') }}">
+  <title>Employer Home</title>  
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/employer_home.css') }}">
     <h1 style="margin-bottom: 3%;">{% print("Welcome, " + user.company_name + "!" )%}</h1>
   </head>
 
