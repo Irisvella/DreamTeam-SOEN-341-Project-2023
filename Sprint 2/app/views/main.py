@@ -107,13 +107,11 @@ def editinfo(id):
         if user.profile == 'seeker':
             user.email = request.form['email']
             user.phone_number = request.form['phone_number']
-           # user.password = request.form['password']
             db.session.commit()
             return redirect(url_for('main.seeker_home'))
         if user.profile == 'employer':
             user.email = request.form['email']
             user.phone_number = request.form['phone_number']
-            #user.password = request.form['password']
             db.session.commit()
             return redirect(url_for('main.employer_home'))
     return render_template('editinfo.html', user=current_user)
@@ -310,12 +308,10 @@ def download_resume():
 @main.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
-    #TODO decide which elements we should be able to affect
     return render_template('settings.html', user=current_user)
 
 @main.route('/help', methods=['GET', 'POST'])
 def help():
-    #TODO make a contact us page 
     return render_template('help.html')
 
 @main.route('/admin_home', methods=['GET', 'POST'])
