@@ -1,0 +1,97 @@
+from datetime import datetime
+from flask import Flask, request, url_for
+from flask_testing import TestCase
+from app import create_app, db
+from app.models import Post, Notification, Application, User
+
+
+class TestAplication(TestCase):
+    
+    def create_app(self):
+        app = Flask(__name__)
+        app.config['TESTING'] = True
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+        app.config['SECRET_KEY'] = 'mysecretkey'
+        return app
+
+    def setUp(self):
+        db.create_all()
+        post = Post(title='Test Post', author_id=2)
+        application = Application(user_id='1', post_id = '1', author_num = '2', applicant_name = 'Sarah',
+        applicant_resume = self.resume_file, title = 'Test Post', date_applied = datetime.utcnow())
+        self.user1 = User(profile="seeker",email="user1@example.com", password="password1", first_name="Sarah", last_name="User", phone_number="123456789")
+        self.author = User(profile="employer",email="employer@example.com", password="password1", first_name="Company", last_name="Name", phone_number="123456789")
+        db.session.add(post)
+        db.session.add(self.user1)
+        db.session.add(self.author)
+        db.session.add(application)
+        db.session.commit()
+
+    def test_apply_post(self):
+        # Log in as a user with ID 1
+        self.client.post('auth/login', data=dict(
+            email='user1@example.com',
+            password='password1',
+            profile='seeker'
+        ), follow_redirects=True)
+
+        # Simulate a user accessing the apply-post page for post ID 1
+        response = self.client.get('main/apply-post/1')
+        self.assertEqual(response.status_code, 200)
+
+        # Simulate a user submitting a job application
+        with open('test_resume.pdf', 'rb') as resume_file:
+            response = self.client.post('main/apply-post/1', data=dict(
+                 applicant_resume_file=resume_file, user_id='1', post_id = '1', author_num = '2', applicant_name = 'Sarah',
+                title = 'Test Post', date_applied = datetime.utcnow()   
+            ), follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('Your application has been submitted.', response.data)
+
+        # Verify that the job application was stored in the database
+        application = Application.query.filter_by(user_id=1, post_id=1).first()
+        self.assertIsNotNone(application)
+        self.assertEqual(application.user_id, 1)
+        self.assertEqual(application.post_id, 1)
+        self.assertEqual(application.author_num, 2)
+        self.assertEqual(application.applicant_name, 'User 1')
+        self.assertEqual(application.title, 'Test Post')
+        self.assertIsNotNone(application.date_applied)
+        self.assertIsNotNone(application.applicant_resume)
+
+        # Verify that a notification was created for the post author
+        notification = Notification.query.filter_by(user_id=1).first()
+        self.assertIsNotNone(notification)
+        self.assertEqual(notification.message, 'User 1 has applied to your job post: Test Post')
+
+        # Verify that the user is redirected to the admin_home page
+        self.assertIn(url_for('main.admin_home'), response.location)
+
+    #test to see if a notif was sent
+    def test_notif(self):
+
+         #log out user 1
+        response = self.client.get('auth/logout', follow_redirects=True)
+        self.assert200(response)
+        #self.assertIn(b'You have been logged out', response.data)
+
+    
+        #log in employer
+        self.client.post('auth/login', data=dict(
+        email='employer1@example.com',
+        password='password1',
+        profile='employer'
+        ), follow_redirects=True)
+        
+        response = self.client.post('main/contact-applicant/Sarah/1', data=dict(message= "You have been contacted", user_id= 1))
+        user = User.query.filter_by(first_name= 'Sarah').first()
+        post = Post.query.filter_by(id= 1)
+        notification = Notification.query.filter_by(user_id=1).first()
+        self.assertIsNotNone(notification)
+        self.assertEqual(notification.message, "You have been contacted")
+        self.assertEqual(user.first_name, 'Sarah')
+        self.assertEqual(post, 1)
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
